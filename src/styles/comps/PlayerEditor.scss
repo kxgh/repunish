@@ -1,0 +1,217 @@
+@use '../base/vars';
+@use '../base/mixins';
+
+.player-editor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 11;
+  margin: 1em auto;
+  visibility: visible;
+  animation-name: pe-container-enter;
+  animation-duration: .75s;
+  font-size: 120%;
+
+  .player-avatar {
+    transition: .5s;
+  }
+
+  img:hover {
+    transform: translateY(.1em);
+  }
+}
+
+.player-editor-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .8);
+  z-index: 10;
+}
+
+.player-editor-bg--hidden {
+  visibility: hidden;
+}
+
+.player-editor--hidden {
+  left: 100vw;
+  visibility: hidden;
+}
+
+
+@keyframes pe-container-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pe-container-leave {
+  from {
+    visibility: visible;
+    opacity: .5;
+    left: 0;
+  }
+  to {
+    visibility: hidden;
+    opacity: 0;
+    left: 100vw;
+  }
+}
+
+.player-editor__intro {
+  font-family: vars.$font-secondary;
+}
+
+.player-editor__avatar, .player-editor__name, .player-editor__footer, .player-editor__avatar__pages, .player-editor__luck {
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 1em;
+  width: 50%;
+  transition: .5s;
+  //font-size: 100%;
+
+  .player-editor__label {
+    font-size: 75%;
+  }
+}
+
+.player-editor__avatar {
+  .player-editor__label {
+    margin-bottom: .3em;
+  }
+}
+
+.player-editor__avatar--choosing {
+  width: 100%;
+}
+
+.player-editor__avatar__pages {
+  color: vars.$color-font-invert;
+  font-size: 80%;
+  display: table;
+}
+
+.player-editor__avatar, .player-editor__name, .player-editor__luck {
+  color: vars.$color-font-primary;
+  border: 2px solid vars.$color-purple;
+  background-color: vars.$color-purple;
+  @include mixins.soft-text-shadow;
+}
+
+.player-editor__name {
+  input {
+    /*color: vars.$color-greenyellow;
+    border-bottom-color: vars.$color-greenyellow;*/
+    color: vars.$color-white;
+    max-width: 100%;
+    font: inherit;
+    background-color: inherit;
+    outline: none;
+    border: none;
+    border-bottom: 3px solid;
+    @include mixins.soft-text-shadow;
+  }
+}
+
+.player-editor__avatar, .player-editor__footer, .player-editor__luck {
+  cursor: pointer;
+}
+
+.player-editor__footer .player-editor__btn:hover {
+  filter: invert(1);
+}
+
+.player-editor__avatar:hover, .player-editor__luck:hover { //,.player-editor__name:hover{
+  border: 2px solid vars.$color-cyan;
+  background-color: vars.$color-cyan;
+  color: vars.$color-font-invert
+}
+
+.player-editor__luck {
+  font-size: 75%;
+}
+
+.player-editor__footer, .player-editor__avatar__pages {
+  cursor: pointer;
+  //height: vars.$font-size-l-r*3;
+  height: 2em;
+  padding: 0;
+  margin: auto;
+  display: table;
+}
+
+.player-editor__btn {
+  display: table-cell;
+  vertical-align: middle;
+  width: 50%;
+  height: 100%;
+  transition: .5s;
+}
+
+.player-editor__btn:nth-child(2n+1) {
+  border: 2px solid vars.$color-red;
+  background-color: vars.$color-red;
+}
+
+.player-editor__btn:nth-child(2n) {
+  border: 2px solid vars.$color-greenyellow;
+  background-color: vars.$color-greenyellow;
+  color: vars.$color-font-invert;
+}
+
+.player-editor__avatar__pages .player-editor__btn {
+  background-color: vars.$color-gold;
+  border: 2px solid vars.$color-gold;
+}
+
+.player-editor__avatar__pages .player-editor__btn:hover {
+  background-color: vars.$color-cyan;
+  border: 2px solid vars.$color-cyan;
+}
+
+
+@media (max-width: vars.$screen-small-w) {
+  .player-editor__avatar, .player-editor__name, .player-editor__footer, .player-editor__avatar__pages, .player-editor__luck {
+    width: 95%;
+  }
+}
+
+@media (max-height: vars.$screen-small-h) {
+  .player-editor {
+    margin: 0 auto;
+    padding: 0;
+    font-size: 100%;
+  }
+  .player-editor__avatar {
+    .player-editor__label {
+      display: none
+    }
+  }
+  .player-editor__avatar, .player-editor__name, .player-editor__luck {
+    padding: 2vh 5%;
+  }
+}
+
+/*
+@media (min-width: vars.$screen-small-w) {
+  .player-editor {
+    font-size: 6vh;
+  }
+}
+
+@media (min-width: vars.$screen-mid-w) {
+  .player-editor {
+    img {
+      width: vars.$avatar-size * 2;
+      height: vars.$avatar-size * 2;
+    }
+  }
+}
+
+*/

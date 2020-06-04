@@ -1,0 +1,58 @@
+@use '../base/vars';
+
+.board-help {
+  background-color: vars.$color-purple;
+  color: white;
+  font-size: 100%;
+  display: block;
+  margin: vars.$tile-type-size auto;
+  word-break: break-word;
+  position: relative;
+  text-align: center;
+  border: 0;
+  width: 95%;
+}
+
+.board-help__type {
+  font-weight: bolder;
+  font: 75% vars.$font-secondary;
+  margin-bottom: 1em;
+}
+
+.board-help__content {
+  font-size: 1em;
+  color: vars.$color-cyan;
+  padding: 0 .5em;
+  margin: .5em auto;
+  min-height: 4em;
+}
+
+.board-help__image {
+  width: vars.$tile-type-size;
+  height: vars.$tile-type-size;
+  margin: 0 auto -.5 * vars.$tile-type-size auto;
+  top: -.5 * vars.$tile-type-size;
+  position: relative;
+  background-size: contain;
+}
+
+.board-help__dismiss-btn {
+  width: 100%;
+  color: #000;
+  outline: none;
+  border: 0;
+  font-size: 1em;
+  background-color: vars.$color-greenyellow;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.board-help__dismiss-btn:hover {
+  background-color: vars.$color-cyan;
+}
+
+@media (max-width: vars.$screen-small-w) {
+  .board-help {
+    width: 80%;
+  }
+}

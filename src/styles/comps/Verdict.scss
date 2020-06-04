@@ -1,0 +1,44 @@
+@use '../base/vars';
+
+.quest-verdict {
+  text-align: left;
+  font-size: 80%;
+  background-color: vars.$color-red;
+  padding: 1em;
+  animation-name: verdict-color-change-anim;
+  animation-duration: .3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+.quest-verdict__title {
+  display: none;
+}
+
+.quest-verdict__list {
+}
+
+.quest-verdict__listitem {
+  display: flex;
+  align-items: center;
+  margin-top: .5em;
+
+  .player-avatar {
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: .5em;
+  }
+
+  p {
+    font-size: 85%;
+  }
+}
+
+@keyframes verdict-color-change-anim {
+  from {
+    background-color: vars.$color-red;
+  }
+  to {
+    background-color: red;
+  }
+}

@@ -1,0 +1,16 @@
+@use '../base/vars';
+@use '../base/mixins';
+
+.dice {
+  font-size: 2em;
+  top: -2em;
+  transition: .5s;
+  //margin-right: .5em;
+  position: relative;
+  //@include mixins.attention-grabber-text;
+}
+
+.dice--hidden {
+  visibility: hidden;
+  opacity: 0;
+}

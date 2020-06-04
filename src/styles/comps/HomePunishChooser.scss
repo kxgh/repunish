@@ -1,0 +1,44 @@
+@use '../base/vars';
+@use '../base/mixins';
+
+.punish-chooser__intro {
+  font: 110% vars.$font-secondary;
+}
+
+.punish-chooser__intro__invalid {
+  @include mixins.invalid-text;
+  margin: .5em 0;
+}
+
+.punish-chooser__list {
+  width: 100%;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+.punish-chooser__listitem {
+  box-sizing: border-box;
+  padding: .5em 1em;
+  text-align: center;
+  width: 50%;
+  position: relative;
+  transition: .5s;
+  cursor: pointer;
+
+  color: vars.$color-font-primary;
+  border: 2px solid crimson;
+  background-color: crimson;
+  left: 40%;
+}
+
+.punish-chooser__listitem:hover {
+  filter: invert(1);
+}
+
+.punish-chooser__listitem--selected {
+  background-color: greenyellow;
+  border-color: greenyellow;
+  color: vars.$color-font-invert;
+  left: 10%;
+}

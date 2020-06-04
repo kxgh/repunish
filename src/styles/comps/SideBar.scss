@@ -1,0 +1,15 @@
+.sidebar {
+  height: 100%;
+  grid-area: sidebar;
+}
+
+.sidebar__btn {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 33%;
+}
+
+.sidebar__btn:nth-of-type(2n) {
+  height: 34%;
+}

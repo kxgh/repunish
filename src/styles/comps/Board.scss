@@ -1,0 +1,55 @@
+@use '../base/vars';
+@use "../base/mixins";
+
+.board {
+  display: flex;
+  flex-flow: row nowrap;
+  font-size: 26px;
+  font-size: calc(14px + 2vh);
+}
+
+.board__desktop {
+  flex-grow: 1;
+}
+
+.board__desktop-controls {
+  font-family: vars.$font-primary;
+  color: vars.$color-font-primary;
+  margin: 0 0;
+  padding-top: .5em;
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.board__help__btn {
+  width: 2em;
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.board__help__btn--hidden {
+  visibility: hidden;
+}
+
+.board__help__btn:hover {
+  color: deeppink;
+  transform: scale(1.5);
+}
+
+@media (max-width: vars.$screen-small-w) {
+}
+
+@media (max-height: vars.$screen-small-h) {
+}
+
+@media (min-width: vars.$screen-mid-w) {
+  .board {
+    font-size: calc(14px + 3vh);
+  }
+}

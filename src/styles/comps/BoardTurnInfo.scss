@@ -1,0 +1,51 @@
+@use '../base/vars';
+@use "../base/mixins";
+
+.board-turn-info {
+  text-align: center;
+  margin-bottom: 0;
+
+  h1 {
+    font-weight: bolder;
+    font-size: 2em;
+  }
+
+  img {
+    width: vars.$avatar-size * 1.5;
+    height: vars.$avatar-size * 1.5;
+    border-radius: .5em;
+    border: 3px solid white;
+    cursor: pointer;
+    transition: .5s;
+  }
+
+  img:active {
+    transform: scale(.7);
+  }
+}
+
+@media (max-width: vars.$screen-small-w) {
+  .board-turn-info {
+    h1 {
+      font-size: 150%;
+    }
+  }
+}
+
+@media (max-height: vars.$screen-small-h) {
+  .board-turn-info {
+    img {
+      width: vars.$avatar-size;
+      height: vars.$avatar-size;
+    }
+  }
+}
+
+@media (min-width: vars.$screen-mid-w) {
+  .board-turn-info {
+    img {
+      width: 12vw;
+      height: 12vw;
+    }
+  }
+}

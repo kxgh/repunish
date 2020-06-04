@@ -1,0 +1,84 @@
+@use '../base/vars';
+@use '../base/mixins';
+
+.player-list {
+  position: relative;
+  animation-duration: 1s;
+  animation-name: pl-container-enter;
+  visibility: visible;
+}
+
+.player-list--hidden {
+  animation-duration: 1s;
+  animation-name: pl-container-leave;
+  visibility: hidden;
+}
+
+@keyframes pl-container-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pl-container-leave {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.player-list__intro {
+  font: 110% vars.$font-secondary;
+}
+
+.player-list__intro__invalid {
+  @include mixins.invalid-text;
+  margin: .5em 0;
+}
+
+.player-list__list {
+  width: 100%;
+  min-width: 260px;
+}
+
+.player-list__listitem {
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 1em;
+  width: 50%;
+  transition: .5s;
+  cursor: pointer;
+  word-break: normal;
+
+  display: flex;
+  align-items: center;
+
+  color: vars.$color-font-primary;
+  border: 2px solid vars.$color-purple;
+  background-color: vars.$color-purple;
+
+  .player-avatar {
+    margin-right: .5em;
+  }
+}
+
+.player-list__listitem:hover {
+  border: 2px solid vars.$color-cyan;
+  background-color: vars.$color-cyan;
+  color: vars.$color-font-invert;
+}
+
+.player-list__listitem--add {
+  filter: invert(1);
+}
+
+@media (max-width: vars.$screen-mid-w) {
+  .player-list__listitem {
+    width: 95%;
+  }
+}

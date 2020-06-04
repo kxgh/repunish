@@ -1,0 +1,76 @@
+@use '../base/vars';
+
+@mixin soft-text-shadow{
+  //text-shadow: 1px 1px black;
+}
+
+@mixin invalid-text {
+  animation-name: invalid-text-anim;
+  animation-duration: .5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes invalid-text-anim {
+  from {
+    color: vars.$color-white
+  }
+  to {
+    color: vars.$color-red
+  }
+}
+
+@mixin avatar-border {
+  box-shadow: 0 1px 2px 2px black;
+}
+
+@mixin attention-grabber-text {
+  background: vars.$img-rainbow-strip repeat-y;
+
+  background-clip: text;
+
+  text-fill-color: transparent;
+  animation: attention-grab-anim 2s ease-in-out alternate infinite;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: attention-grab-anim 2s ease-in-out alternate infinite;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  -moz-animation: attention-grab-anim 2s ease-in-out alternate infinite;
+  -moz-transform: translate3d(0, 0, 0);
+  -moz-backface-visibility: hidden;
+}
+
+@mixin attention-grabber-bg {
+  background: vars.$img-rainbow-strip repeat-y;
+
+  background-clip: border-box;
+
+  animation: attention-grab-anim 2s ease-in-out alternate infinite;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+
+  -webkit-background-clip: border-box;
+  -webkit-animation: attention-grab-anim 2s ease-in-out alternate infinite;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+
+  -moz-background-clip: border;
+  -moz-animation: attention-grab-anim 2s ease-in-out alternate infinite;
+  -moz-transform: translate3d(0, 0, 0);
+  -moz-backface-visibility: hidden;
+}
+
+@keyframes attention-grab-anim {
+  0% {
+    background-position: 0 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}

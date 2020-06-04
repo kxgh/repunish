@@ -1,0 +1,30 @@
+@use '../base/vars';
+@use "../base/mixins";
+
+.btn {
+  position: relative;
+  font-weight: bolder;
+  cursor: pointer;
+  font-size: vars.$font-size-s-r;
+  padding: 1em .5em;
+  border: 3px solid;
+  border-radius: .5em;
+  text-shadow: 2px 2px black;
+  transition: .5s;
+}
+
+.btn--hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.btn:hover {
+  transform: translateY(6px);
+}
+
+.btn--l-attention {
+  font-family: vars.$font-secondary;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  @include mixins.attention-grabber-bg;
+}

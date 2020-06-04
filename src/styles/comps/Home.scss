@@ -1,0 +1,235 @@
+@use '../base/vars';
+@use "../base/mixins";
+
+$-bd-radius: 2em;
+$-dist: 1em;
+$-font-size: 32px;
+
+$-intropic-saturate: 2;
+
+.home {
+  font-size: $-font-size;
+  background-color: vars.$color-bg-dark;
+  background-image: vars.$img-bg;
+  color: vars.$color-white;
+  font-family: vars.$font-primary;
+  position: relative;
+  z-index: 0;
+  overflow-x: hidden;
+}
+
+.home__image-container {
+  text-align: center;
+  height: 5vw * 10;
+  max-height: 50vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.home__image-container > .home__image-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.home__header-image {
+  background-image: vars.$img-intro;
+
+  background-attachment: fixed;
+  background-position: bottom;
+  background-repeat: repeat;
+
+  animation-name: header-image-anim;
+  animation-duration: 150s;
+  animation-timing-function: ease-in-out;
+
+  animation-iteration-count: infinite;
+
+  background-size: 3vw;
+  filter: hue-rotate(3590deg) saturate($-intropic-saturate) blur(2px);
+}
+
+
+.punish__info {
+  font-size: 120%;
+
+  ul {
+    list-style: disc;
+  }
+
+  ul li:nth-of-type(2n) {
+    color: vars.$color-blue;
+  }
+
+  h2, ul li {
+    text-align: left;
+    letter-spacing: .05em;
+    margin-bottom: .3em;
+  }
+
+  h2 {
+    text-transform: uppercase;
+    font-weight: bolder;
+    margin: 1em auto;
+    color: vars.$color-red;
+    text-shadow: 1px 1px #000;
+  }
+
+}
+
+/* override with specificity */
+section.punish__info {
+  padding: 1em 3em;
+  width: auto;
+  font-family: vars.$font-secondary;
+  background-image: vars.$img-intro;
+  background-attachment: fixed;
+  background-size: 500%;
+  background-position-x: 12%;
+  margin-top: 0;
+}
+
+.home__footer-image {
+  background-image: vars.$img-intro;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+
+  animation-name: footer-image-anim;
+  animation-duration: 25s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+}
+.home__footer-image:hover{
+}
+
+@keyframes header-image-anim {
+  0% {
+    background-size: 400%;
+    filter: hue-rotate(0) saturate($-intropic-saturate) blur(2px);
+  }
+  10% {
+    background-size: 3vw;
+    filter: hue-rotate(3590deg) saturate($-intropic-saturate) blur(2px);
+  }
+  100% {
+    background-size: 3vw;
+    filter: hue-rotate(3590deg) saturate($-intropic-saturate) blur(2px);
+    background-position-x: 999rem;
+  }
+}
+
+@keyframes footer-image-anim {
+  from {
+    background-size: 450%;
+    filter: hue-rotate(3590deg) saturate(1) blur(3px);
+  }
+  to {
+    background-size: 300%;
+    filter: hue-rotate(3590deg) saturate(1) blur(3px);
+  }
+}
+
+.home__logo {
+  font: vars.$font-size-l-rw vars.$font-secondary;
+  font-weight: bolder;
+  text-transform: uppercase;
+  text-shadow: 3px 3px red;
+  filter: blur(1px);
+  z-index: 3;
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  animation: logo-scale-anim 5s;
+}
+
+@keyframes logo-scale-anim {
+  from {
+    transform: scale(6) translateY(10em)
+  }
+  to {
+    transform: scale(1) translateY(0)
+  }
+}
+
+.home__start {
+  z-index: 3;
+  position: relative;
+  display: inline-block;
+}
+
+.home__start:hover {
+  filter: invert(1);
+}
+
+.intro__rules {
+  width: 65%;
+  text-align: center;
+  margin: 3em auto;
+}
+
+.setup-section {
+  margin: $-dist auto;
+  width: 50%;
+  background-color: vars.$color-bg-dark;
+  padding: 1em;
+  text-align: center;
+  position: relative;
+}
+
+.setup-section:before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  background: #fff;
+  z-index: -1;
+  transform: skew(-1deg, -1deg);
+}
+
+.setup-section:nth-child(2):before {
+  background: linear-gradient(225deg, vars.$color-greenyellow, vars.$color-blue);
+}
+
+.setup-section:nth-child(3):before {
+  background: linear-gradient(225deg, vars.$color-red, vars.$color-gold);
+}
+
+.setup-section:nth-child(4):before {
+  background: linear-gradient(225deg, #cb00ff, vars.$color-cyan);
+}
+
+.players {
+  border-radius: $-bd-radius;
+  margin-bottom: $-dist;
+}
+
+.player__avatar {
+  width: 2em;
+  height: 2em;
+}
+
+@media (max-width: vars.$screen-small-w) {
+  .setup-section {
+    width: 85%;
+  }
+  .home__start {
+    width: 95%;
+  }
+  .home {
+    font-size: $-font-size - 4px;
+  }
+  .punish__info {
+    font-size: 80%;
+  }
+}

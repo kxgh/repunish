@@ -1,0 +1,196 @@
+@use '../base/vars';
+@use '../base/mixins';
+
+.board-tile {
+  display: block;
+  color: vars.$color-font-primary;
+  box-sizing: border-box;
+
+  width: vars.$tile-size-r;
+  height: vars.$tile-size-r;
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  min-width: vars.$board-tiles-min-wid/2;
+  min-height: vars.$board-tiles-min-wid/2;
+
+  max-width: vars.$board-tiles-min-wid*1;
+  max-height: vars.$board-tiles-min-wid*1;
+
+  border-right: 3px solid #FFF;
+
+  margin: .5em;
+
+  text-align: center;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  transition: 1s;
+
+  /*animation-name: tst;
+  animation-duration: .4s;*/
+}
+
+/*@keyframes tst{
+  from{
+    transform: scale(4);
+  }
+  to{
+    transform: scale(1);
+  }
+}*/
+
+/*.board-tile--bg-finish {
+  background-image: url("/img/finish.png");
+}
+
+.board-tile--bg-math {
+  background-image: url("/img/math.png");
+}
+
+.board-tile--bg-multi {
+  background-image: url("/img/multi.png");
+}
+
+.board-tile--bg-relay {
+  background-image: url("/img/relay.png");
+}
+
+.board-tile--bg-rest {
+  background-image: url("/img/rest.png");
+}
+
+.board-tile--bg-geo {
+  background-image: url("/img/geo.png");
+}*/
+
+.board-tile--clickable {
+  cursor: pointer;
+  border-right: .2em solid red;
+  border-top: .2em solid red;
+  animation-name: clickable-tile-anim;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  border-radius: 40%;
+}
+
+.board-tile--clickable:hover {
+  transform: translateX(1em);
+}
+
+.board-tile--helpable {
+  cursor: pointer;
+  border-left: .2em solid;
+  border-bottom: .2em solid;
+  border-radius: 40%;
+}
+
+.board-tile--helpable:hover {
+  transform: translateX(1em);
+}
+
+.board-tile:active{
+  transform: scale(.7) translateX(1em);
+}
+
+@keyframes clickable-tile-anim {
+  0% {
+    border-color: #FF0000;
+  }
+  16% {
+    border-color: #FF7F00;
+  }
+  33% {
+    border-color: #FFFF00;
+  }
+  50% {
+    border-color: #00FF00;
+  }
+  66% {
+    border-color: #0000FF;
+  }
+  83% {
+    border-color: #4B0082;
+  }
+  100% {
+    border-color: #9400D3;
+  }
+}
+
+@keyframes aitf {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.board-tile__players {
+  display: flex;
+  box-sizing: content-box;
+  position: absolute;
+  width: 100%;
+  right: 0;
+  transform: translateX(105%);
+  flex-wrap: wrap;
+  align-items: flex-end;
+
+
+  /*.board-tile__players__turn{
+    animation-name: player-avatar-turn-anim;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+  }*/
+}
+
+.board-tile__players__avatar {
+  width: 25%;
+  animation-name: player-avatar-appear-anim;
+  animation-duration: .5s;
+  transform: scale(1);
+}
+
+.board-tile__players__avatar--turn {
+  animation: player-avatar-appear-anim .5s, player-avatar-turn-anim .5s linear infinite alternate-reverse;
+}
+
+@keyframes player-avatar-turn-anim {
+  from {
+    box-shadow: 0 0 1.5em 3px #fff;
+  }
+  to {
+    box-shadow: 0 0 .5em 1px #fff;
+  }
+}
+
+@keyframes player-avatar-appear-anim {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: vars.$screen-small-w) {
+  .board-tile {
+    width: 100%;
+    margin: vars.$tile-size-r/10 0;
+  }
+
+  .board-tile__players {
+    right: unset;
+    transform: unset;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .board-tile__players__avatar {
+    max-width: 20%;
+  }
+}

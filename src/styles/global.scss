@@ -1,0 +1,39 @@
+@import "vendor/reset";
+@import "vendor/fonts";
+@import "vendor/ra/rpg-awesome";
+
+@import "layout/layout";
+
+@import "base/vars";
+@import "base/mixins";
+@import "base/globs";
+
+@import "comps/Home";
+@import "comps/Spinner";
+@import "comps/Button";
+@import "comps/BoardHelp";
+@import "comps/Game";
+@import "comps/SideBar";
+@import "comps/Verdict";
+@import "comps/PlayerPicker";
+@import "comps/GameOverScreen";
+@import "comps/Board";
+@import "comps/BoardTurnInfo";
+@import "comps/BoardDiceRoller";
+@import "comps/LoadingScreen";
+@import "comps/BoardTile";
+@import "comps/Dice";
+@import "comps/PlayerAvatar";
+@import "comps/Quest";
+@import "comps/HomePunishChooser";
+@import "comps/HomePlayerList";
+@import "comps/PlayerEditor";
+
+#root {
+  height: 100%;
+  min-width: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -o-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+}

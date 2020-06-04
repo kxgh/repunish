@@ -1,0 +1,11 @@
+export const TAB_SWITCH = 'TAB_SWITCH';
+export const ROLL_DICE = 'ROLL_DICE';
+export const SETTLE_DICE = 'SETTLE_DICE';
+export const OFFER_STEPS = 'OFFER_STEPS';
+export const STEP_CHOOSE = 'STEP_CHOOSE';
+export const SHOW_QUEST = 'SHOW_QUEST';
+export const FULFILL_QUEST = 'FULFILL_QUEST';
+export const OFFER_NEXT_TURN = 'OFFER_NEXT_TURN';
+export const QUIZ_ANSWER_CORRECT = 'QUIZ_ANSWER_CORRECT';
+export const QUIZ_ANSWER_INCORRECT = 'QUIZ_ANSWER_INCORRECT';
+export const TELEPORT_PLAYER = 'TELEPORT_PLAYER';

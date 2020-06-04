@@ -1,0 +1,53 @@
+@use '../base/vars';
+@use '../base/mixins';
+
+.player-picker {
+  text-align: left;
+  font-size: 80%;
+  padding: .5em 1em;
+}
+
+.player-picker__listitem {
+  display: flex;
+  align-items: center;
+  filter: saturate(0);
+  margin: 1em auto;
+  cursor: pointer;
+  text-decoration: line-through;
+  transition: .5s;
+
+  .player-avatar {
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: .5em;
+  }
+}
+
+.player-picker__listitem:active {
+  transform: scale(.85);
+}
+
+.player-picker__listitem--picked {
+  filter: unset;
+  text-decoration: unset;
+
+  .player-avatar {
+    box-shadow: 0 1px 2px 4px greenyellow;
+  }
+}
+
+.player-picker__confirm-btn {
+  width: 100%;
+  color: #000;
+  outline: none;
+  border: 0;
+  font-size: 1em;
+  background-color: vars.$color-greenyellow;
+  cursor: pointer;
+  transition: .5s;
+  font-family: inherit;
+}
+
+.player-picker__confirm-btn:hover {
+  background-color: vars.$color-cyan;
+}

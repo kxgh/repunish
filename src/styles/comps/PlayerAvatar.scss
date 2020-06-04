@@ -1,0 +1,6 @@
+@use '../base/vars';
+@use '../base/mixins';
+
+.player-avatar {
+  @include mixins.avatar-border;
+}

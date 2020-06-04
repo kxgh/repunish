@@ -1,0 +1,100 @@
+@use '../base/vars';
+
+.game-over {
+  font-size: 52px;
+  font-size: calc(14px + 4vh);
+  color: vars.$color-white;
+  padding-top: 1em;
+
+  .player-avatar {
+    width: 2em;
+    height: 2em;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.game-over--accent {
+  color: vars.$color-red;
+  text-shadow: 1px 1px black;
+}
+
+.game-over__intro-title {
+  font-size: 150%;
+  margin: 0 auto 1em auto;
+  text-align: center;
+  font-family: vars.$font-secondary;
+}
+
+.game-over__most-punished {
+  width: 100%;
+  //background-color: vars.$color-red;
+  background-color: rgba(220, 20, 60, .2);
+  text-align: center;
+  padding-bottom: 1em;
+  font-size: 150%;
+
+  i {
+    position: relative;
+    top: -.3em;
+  }
+}
+
+.game-over__globals {
+  padding: 1em;
+  margin: 2em auto;
+  background-color: rgba(93, 0, 255, 0.2);
+}
+
+.game-over__player-stats {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.game-over__ps {
+  box-sizing: border-box;
+  width: 50%;
+  padding: 1em;
+  transition: .5s;
+}
+
+.game-over__ps:nth-child(3n) {
+  background-color: vars.$color-purple;
+  //background-color: rgba(93,0,255,0.2);
+}
+
+.game-over__ps:nth-child(3n+1) {
+  background-color: vars.$color-red;
+  //background-color: rgba(220,20,60,.2);
+}
+
+.game-over__ps:nth-child(3n+2) {
+  background-color: vars.$color-cyan;
+  color: vars.$color-font-invert;
+
+  /*background-color: rgba(35,235,195,.2);
+  color: vars.$color-white;*/
+}
+
+.game-over__ps:hover {
+}
+
+
+.game-over__ps__name {
+  text-align: center;
+  margin-top: .1em;
+}
+
+@media (max-width: vars.$screen-mid-w) {
+  .game-over {
+    font-size: 32px;
+    font-size: calc(14px + 2vh);
+  }
+}
+
+@media (max-width: vars.$screen-small-w) {
+  .game-over {
+    font-size: 24px;
+    font-size: calc(14px + 1vh);
+  }
+}

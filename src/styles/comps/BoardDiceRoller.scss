@@ -1,0 +1,32 @@
+@use '../base/vars';
+@use "../base/mixins";
+
+.board-dice-roller {
+  margin-top: 1.5em;
+  text-align: center;
+  position: relative;
+}
+
+.board-dice-roller__btn-roll {
+  width: 50%;
+  margin: 0 auto;
+  font-size: 50%;
+  transition: .5s;
+}
+
+.board-dice-roller__btn-roll--hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.board-dice-roller-dice {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: vars.$screen-small-w) {
+  .board-dice-roller__btn-roll {
+    font-size: 12px;
+  }
+}

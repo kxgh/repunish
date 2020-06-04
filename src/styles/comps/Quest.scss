@@ -1,0 +1,244 @@
+@use '../base/vars';
+
+$-image-size: vars.$tile-type-size;
+
+.quest {
+  background-color: vars.$color-purple;
+  color: white;
+  /*font-size: 100%;
+  font-size: calc(14px + 4vw);*/
+  //font-size: 28px;
+  font-size: calc(18px + 2vh);
+  display: block;
+  margin: $-image-size auto;
+  word-break: break-word;
+  position: relative;
+  text-align: center;
+  border: 0;
+  //border-radius: 1em 1em .2em .2em;
+  animation-name: quest-appear-anim;
+  animation-duration: 1s;
+}
+
+@keyframes quest-appear-anim {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+
+.quest__image {
+  width: $-image-size;
+  height: $-image-size;
+  margin: 0 auto -.5 * $-image-size auto;
+  top: -.5 * $-image-size;
+  position: relative;
+  background-size: contain;
+}
+
+.quest__body {
+  //padding: 0 .5em;
+}
+
+.quest__type {
+  font-weight: bolder;
+  font: 75% vars.$font-secondary;
+  margin-bottom: 1em;
+}
+
+.quest__question {
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+.quest__fulfill-btn {
+  width: 100%;
+  color: #000;
+  outline: none;
+  border: 0;
+  font-size: 1em;
+  background-color: vars.$color-greenyellow;
+  cursor: pointer;
+  transition: .2s;
+  //animation: fulfill-btn-flash .5s infinite linear alternate;
+}
+
+@keyframes fulfill-btn-flash {
+  0% {
+    background-color: vars.$color-greenyellow;
+  }
+  30% {
+    background-color: vars.$color-greenyellow;
+  }
+  100% {
+    background-color: limegreen;
+  }
+}
+
+.quest__reveal-btn:hover {
+  filter: invert(1);
+  //background-color: vars.$color-cyan;
+}
+
+.quest__fulfill-btn:hover {
+  background-color: vars.$color-cyan;
+}
+
+.quest__reveal-btn {
+  width: 100%;
+  color: #000;
+  font-family: inherit;
+  font-size: 1em;
+  border: 0;
+  margin: 1em auto;
+  background-color: vars.$color-cyan;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.quest__opts {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.quest__solved-status {
+  margin: .5em auto;
+  font-size: 75%;
+}
+
+.quest__opt-btn {
+  width: 50%;
+  font-family: inherit;
+  font-size: 75%;
+  background-color: snow;
+  color: black;
+  padding: 20px;
+
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  transition: .5s;
+}
+
+.quest__opt-btn:hover {
+  filter: invert(1);
+}
+
+.quest__opt-btn:focus {
+}
+
+.quest__opt-btn--correct {
+  background-color: greenyellow;
+}
+
+.quest__opt-btn--correct:hover {
+  filter: unset;
+}
+
+.quest__opt-btn--incorrect {
+  background-color: orangered;
+}
+
+.quest__opt-btn--incorrect:hover {
+  filter: unset;
+}
+
+.quest__task {
+  font-size: 1em;
+  color: vars.$color-cyan;
+  padding: 0 .5em;
+  margin: .5em auto;
+}
+
+.quest__image-task {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  min-width: 3em;
+  min-height: 2em;
+}
+
+.quest__task--accent {
+  filter: invert(1) brightness(1.5);
+  text-shadow: 1px 1px #fff;
+  display: block;
+}
+
+.quest__puzzle--hidden {
+  visibility: hidden;
+}
+
+.quest__puzzle--shown {
+  visibility: visible;
+}
+
+.quest__time-indicator {
+  width: 100%;
+  height: 20px;
+  background-color: crimson;
+  /*transition-property: width;
+  transition-duration: 2s;*/
+  animation-name: time-indicator-anim;
+  animation-timing-function: linear;
+}
+
+.quest__time-indicator--stopped {
+  animation-play-state: paused;
+}
+
+@keyframes time-indicator-anim {
+  from {
+    background-color: vars.$color-greenyellow;
+    filter: brightness(1);
+    width: 0;
+  }
+  to {
+    width: 100%;
+    filter: brightness(1);
+    background-color: vars.$color-red;
+  }
+}
+
+@media (orientation: landscape) {
+}
+
+@media (max-height: vars.$screen-small-h) {
+  .quest {
+    //font-size: 26px;
+  }
+  .quest__task--accent {
+    display: inline-block;
+  }
+}
+
+@media (orientation: landscape) {
+
+}
+
+@media (min-width: vars.$screen-small-w) {
+  .quest {
+    width: 80%;
+  }
+}
+
+@media (min-width: vars.$screen-mid-w) {
+  .quest {
+    width: 60%;
+    //font-size: 46px;
+  }
+  .quest__opt-btn {
+    width: 50%;
+  }
+}
+
+@media (max-height: vars.$screen-small-h) {
+  .quest__opt-btn {
+    font-size: 75%;
+  }
+  .quest {
+    margin-top: $-image-size/2;
+  }
+}
