@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {gcx} from "../logic/globals";
+import {gcx, DURATIONS} from "../logic/globals";
 import Challenge from "../logic/Challenge";
 
 const cx = {
@@ -23,6 +23,10 @@ const getHelpFor = type => {
         case t.DRAGON:
             return `Dragon's mission is to find a specific player and send him back to start. Other players visiting ` +
                 `the dragon are safe from his wrath.`;
+        case t.DUEL:
+            return `Press when displayed set of icons contains the requested item and be faster than your opponent. ` +
+                `Displayed set of icons changes ` +
+                `quickly. Tap on your avatar to answer. If on keyboard, press F for stepping player, J for an opponent.`;
         case t.REST:
             return `Players can safely step here.`;
         case t.GROUP_RELAY:

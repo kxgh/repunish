@@ -8,9 +8,9 @@ const typeGen = (() => {
 
     const multis = [t.MULTI_COND, t.GROUP_RELAY];
     const others = [];
-    others.push(t.TIMED_CAPITAL, t.TIMED_FLAG, t.TIMED_EMBLEM, t.TIMED_MATH, t.REST);
+    others.push(t.TIMED_CAPITAL, t.TIMED_FLAG, t.TIMED_EMBLEM, t.TIMED_MATH, t.REST, t.DUEL);
 
-    return () => random.choice(random.rollForChance(50) ? multis : others)
+    return () => random.choice(random.rollForChance(40) ? multis : others)
 })();
 
 const setDragon = (tiles, players) => {

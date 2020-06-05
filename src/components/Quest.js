@@ -14,6 +14,7 @@ import QuestTimedQuizEmblem from "./QuestTimedQuizEmblem";
 import QuestDragon from "./QuestDragon";
 import QuestPortal from "./QuestPortal";
 import {DURATIONS} from "../logic/globals";
+import QuestDuel from "./QuestDuel";
 
 export const cx = {
     questContainer: 'quest',
@@ -26,9 +27,9 @@ export const cx = {
     task: 'quest__task',
     imageTask: 'quest__image-task',
     taskLarge: 'quest__task--large',
+    avatarBtns: 'quest__avatar-btns',
+    avatarBtn: 'quest__avatar-btn',
     accent: 'quest__task--accent',
-    timer: 'quest__time-indicator',
-    timerStopped: 'quest__time-indicator--stopped',
     puzzleHidden: 'quest__puzzle--hidden',
     puzzleShown: 'quest__puzzle--shown',
     questOpts: 'quest__opts',
@@ -78,6 +79,9 @@ class Quest extends React.Component {
                 <QuestRest challenge={challenge} actions={defaultQuestActions}/>}
                 {challenge.type === Challenge.TYPES.DRAGON &&
                 <QuestDragon challenge={challenge} actions={defaultQuestActions} player={player} dispatch={dispatch}/>}
+                {challenge.type === Challenge.TYPES.DUEL &&
+                <QuestDuel players={players} challenge={challenge} actions={defaultQuestActions} player={player}
+                           dispatch={dispatch}/>}
                 {challenge.type === Challenge.TYPES.PORTAL &&
                 <QuestPortal challenge={challenge} actions={defaultQuestActions} player={player} dispatch={dispatch}/>}
                 {challenge.type === Challenge.TYPES.GROUP_RELAY &&

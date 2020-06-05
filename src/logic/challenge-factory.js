@@ -161,6 +161,52 @@ const genImgQuizGeneric = (p, challengeType) => {
     })
 };
 
+const genDuel = (() => {
+
+    const optsAnimals = ['beetle', 'dinosaur', 'sea-serpent', 'snail', 'snake', 'seagull', 'octopus', 'fish', 'dragonfly'];
+    optsAnimals.push('butterfly', 'fox', 'rabbit', 'wolf-head', 'sheep', 'raven', 'gecko', 'cat');
+    const optsWeapons = ['archer', 'axe', 'battered-axe', 'bombs', 'bowie-knife', 'bullets', 'croc-sword'];
+    optsWeapons.push('crossbow', 'crossed-axes', 'crossed-sabers', 'crossed-swords', 'daggers', 'gavel');
+    optsWeapons.push('harpoon-trident', 'relic-blade', 'musket', 'mp5', 'revolver', 'trident');
+    const optsOther = ['vest', 'round-shield', 'anchor', 'bowling-pin', 'bell', 'campfire', 'castle-emblem', 'capitol'];
+    optsOther.push('fedora', 'hand', 'horn-call', 'metal-gate', 'omega', 'ocean-emblem', 'overmind', 'podium');
+    optsOther.push('shoe-prints', 'queen-crown', 'shovel', 'trail', 'tooth', 'anvil', 'triforce', 'snowflake');
+    optsOther.push('kaleidoscope', 'gold-bar', 'gloop', 'gem', 'eyeball', 'crystals', 'diamond', 'droplet', 'magnet');
+    optsOther.push('tombstone', 'aquarius', 'aries', 'cancer', 'capricorn', 'gemini', 'libra', 'leo', 'pisces');
+    optsOther.push('sagittarius', 'scorpio', 'taurus', 'virgo', 'palm-tree', 'clover', 'daisy', 'leaft', 'flower');
+    optsOther.push('egg', 'toast', 'honeycomb', 'clovers', 'hearts', 'suits', 'spades', 'diamonds', 'wifi');
+
+    const taskWep = 'weapon';
+    const taskAni = 'animal';
+
+    const createGenerator = task => {
+        return () => {
+            const gendCount = random.randomInRange(5, 9);
+            const options = random.shuffle(optsOther.concat(task === taskAni ? optsWeapons : optsAnimals))
+                .slice(0, gendCount);
+            let correct = false;
+            if (random.rollForChance(20)) {
+                correct = true;
+                const i = random.randomInRange(0, options.length - 1);
+                options[i] = task === taskAni ? random.choice(optsAnimals) : random.choice(optsWeapons);
+            }
+            return {
+                options,
+                correct
+            }
+        }
+    };
+
+    return () => {
+        const chosenTask = random.choice([taskWep, taskAni]);
+        return new Challenge({
+            type: Challenge.TYPES.DUEL,
+            task: chosenTask,
+            generator: createGenerator(chosenTask)
+        });
+    }
+})();
+
 /**
  * @param {Player} player
  */
@@ -201,6 +247,8 @@ const generate = (tiles, tileType, player) => {
             return genDragon(player);
         case Challenge.TYPES.PORTAL:
             return genPortal(player, tiles);
+        case Challenge.TYPES.DUEL:
+            return genDuel();
         case Challenge.TYPES.TIMED_MATH:
             return genTimedMath(player);
         case Challenge.TYPES.TIMED_FLAG:

@@ -5,6 +5,7 @@ import withTimedQuiz, {TQ_PHASES} from "./withTimedQuiz";
 import Challenge from "../logic/Challenge";
 import Player from "../logic/Player";
 import Verdict from "./Verdict";
+import TimeElapsedIndicator from "./TimeElapsedIndicator";
 
 const Task = ({task, isImg}) => {
     if (!isImg)
@@ -25,11 +26,6 @@ class QuestTimedQuiz extends React.Component {
 
         setOnCorrect(actions.onCorrect);
         setOnIncorrect(actions.onIncorrect);
-
-        const progStyle = {animationDuration: (timeLimit / 1000) + 's'};
-        const progClassName = [cx.timer, tqPhase !== TQ_PHASES.SOLVING ? cx.timerStopped : ''].join(' ');
-        if (tqPhase > TQ_PHASES.SOLVED)
-            progStyle.animationPlayState = 'paused';
 
         const puzzleClassName = tqPhase > TQ_PHASES.INTRO ? cx.puzzleShown : cx.puzzleShown;
 
@@ -53,7 +49,7 @@ class QuestTimedQuiz extends React.Component {
                         <button className={cx.revealBtn} onClick={revealOptsClicked}>
                             {tqPhase === TQ_PHASES.INTRO && "I'm ready"}
                             {tqPhase === TQ_PHASES.LOADING &&
-                            <span><i className={"ra ra-stopwatch"}/>&nbsp;Loading...</span>}
+                            <span><i className={"ra ra-hourglass"}/>&nbsp;Loading...</span>}
                         </button>
                     </>}
 
@@ -62,8 +58,7 @@ class QuestTimedQuiz extends React.Component {
 
                         <Task task={task} isImg={taskIsImg}/>
 
-                        <div style={progStyle}
-                             className={progClassName}/>
+                        <TimeElapsedIndicator duration={timeLimit} paused={tqPhase > TQ_PHASES.SOLVED}/>
 
                         <div className={cx.questOpts}>
                             {options.map(o => {

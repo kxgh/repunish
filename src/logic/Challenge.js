@@ -9,6 +9,7 @@ class Challenge {
      * @param {string} [props.correctOpt]
      * @param {string} [props.type]
      * @param {string} [props.prefix]
+     * @param {function} [props.generator]
      */
     constructor(props = {}) {
         this.task = props.task;
@@ -16,6 +17,7 @@ class Challenge {
         this.correct = props.correctOpt;
         this.type = props.type;
         this.prefix = props.prefix;
+        this.generator = props.generator;
     }
 
 }
@@ -30,6 +32,7 @@ Challenge.TYPES = {
     DRAGON: 'Dragon',
     PORTAL: 'Portal',
     GROUP_RELAY: 'Bomb',
+    DUEL: 'Duel',
     REST: 'Rest',
     FINISH: 'Finish'
 };
@@ -44,6 +47,7 @@ Challenge.TYPES = {
         [t.TIMED_FLAG]: `${base}flag.png`,
         [t.TIMED_EMBLEM]: `${base}emblem.png`,
         [t.GROUP_RELAY]: `${base}bomb.png`,
+        [t.DUEL]: `${base}duel.png`,
         [t.DRAGON]: `${base}dragon.png`,
         [t.PORTAL]: `${base}portal.png`,
         [t.TIMED_CAPITAL]: `${base}geo.png`,

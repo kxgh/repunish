@@ -25,12 +25,15 @@ const VerdictRecord = ({player}) => {
 };
 
 const Verdict = ({players, challenge}) => {
+
+    if(!players)
+        return null;
     if (!Array.isArray(players))
         players = [players];
     players = players.filter(p => p.punishment);
-
     if (!players.length)
         return null;
+
     return (
         <>
             <div className={cx.container}>

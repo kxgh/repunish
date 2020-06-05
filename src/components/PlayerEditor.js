@@ -30,16 +30,16 @@ const AvatarBtn = (pname, nthSrc, onClick) => {
     )
 };
 
-const luckToWord = luck => {
+const luckToElem = luck => {
     if (luck === 1)
-        return 'favorable';
+        return <i className={"ra ra-clover"}/>; //return 'favorable';
     if (luck > 1)
-        return 'blessed';
+        return <i className={"ra ra-angel-wings"}/>; //return 'blessed';
     if (luck === -1)
-        return 'unfavorable';
+        return <i className={"ra ra-player-despair"}/>;//return 'unfavorable';
     if (luck < -1)
-        return 'cursed';
-    return 'default';
+        return <i className={"ra ra-broken-skull"}/>;//return 'cursed';
+    return <i className={"ra ra-player"}/>;//return 'default';
 };
 
 const avatarResultsPerPage = 8;
@@ -116,7 +116,7 @@ const PlayerEditor = ({player, onPlayerSave, onPlayerDelete, hidden}) => {
                 </li>}
                 {!isChoosingAvatar &&
                 <li className={cx.luck} onClick={togglePlayerLuck}>
-                    <p>Player's luck: {luckToWord(luck)}</p>
+                    <p>Player's luck: {luckToElem(luck)}</p>
                 </li>
                 }
                 {!isChoosingAvatar && <li className={cx.footer}>

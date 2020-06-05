@@ -238,6 +238,20 @@ export const random = (() => {
             alterResult(1);
             return result;
         },
+        pickPlayerForDuel(allPlayers, forPlayer) {
+            allPlayers = allPlayers.filter(p => p.id !== forPlayer.id);
+            const possible = [];
+            allPlayers.forEach(p => {
+                const luck = utils.getPlayersLuck(p);
+                possible.push(p);
+                possible.push(p);
+                if (luck === -1)
+                    possible.push(p);
+                if (luck === -2)
+                    possible.push(p);
+            });
+            return this.choice(possible)
+        },
         shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -253,7 +267,8 @@ export const random = (() => {
 })();
 
 export const MISC = {
-    DRAGON_TARGET_NAME: null
+    DRAGON_TARGET_NAME: null,
+    ON_TOUCH_DEVICE: navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i)
 };
 
 export const avatars = (() => {
@@ -278,6 +293,7 @@ export const DURATIONS = (() => {
     const base = 1000;
     return {
         QUIZ_DEF: 6000,
+        QUEST_DUEL: 1250,
         DICE_ROLL: base * 2,
         DICE_SETTLE: base,
         STEP_CHOOSE: base,

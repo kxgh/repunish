@@ -18,6 +18,10 @@ $-image-size: vars.$tile-type-size;
   //border-radius: 1em 1em .2em .2em;
   animation-name: quest-appear-anim;
   animation-duration: 1s;
+
+  small{
+    font-size: 65%;
+  }
 }
 
 @keyframes quest-appear-anim {
@@ -175,31 +179,22 @@ $-image-size: vars.$tile-type-size;
   visibility: visible;
 }
 
-.quest__time-indicator {
+.quest__avatar-btns{
   width: 100%;
-  height: 20px;
-  background-color: crimson;
-  /*transition-property: width;
-  transition-duration: 2s;*/
-  animation-name: time-indicator-anim;
-  animation-timing-function: linear;
+  background-color: #cb00ff;
+  display: flex;
 }
+.quest__avatar-btn{
+  display: inline-block;
+  flex-grow: 1;
+  background-color: vars.$color-greenyellow;
 
-.quest__time-indicator--stopped {
-  animation-play-state: paused;
+  cursor: pointer;
+  transition: background-color .5s;
+  padding: 1em;
 }
-
-@keyframes time-indicator-anim {
-  from {
-    background-color: vars.$color-greenyellow;
-    filter: brightness(1);
-    width: 0;
-  }
-  to {
-    width: 100%;
-    filter: brightness(1);
-    background-color: vars.$color-red;
-  }
+.quest__avatar-btn:hover{
+  background-color: vars.$color-cyan;
 }
 
 @media (orientation: landscape) {
