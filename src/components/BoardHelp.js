@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {gcx, DURATIONS} from "../logic/globals";
+import {gcx} from "../logic/globals";
 import Challenge from "../logic/Challenge";
 
 const cx = {

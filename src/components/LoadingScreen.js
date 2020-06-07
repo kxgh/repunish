@@ -22,7 +22,7 @@ const getLoadablePic = src => new Promise((resolve, reject) => {
 
 const loadIntro = () => {
     const basePath = Consts.ASSET_PATH + 'img/';
-    let toLoad = ['intropic.jpg', 'mosaic.png', 'rainbow-strip.png'];
+    let toLoad = ['intropic.jpg', 'bg.jpg', 'rainbow-strip.png'];
     toLoad = toLoad
         .map(i => basePath + i)
         .map(i => getLoadablePic(i));

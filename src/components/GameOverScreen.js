@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import Player from "../logic/Player";
 import PlayerAvatar from "./PlayerAvatar";
+import {gcx} from "../logic/globals";
 
 const cx = {
     container: 'game-over',
@@ -23,22 +24,25 @@ const cx = {
 const GameOverScreen = ({summary, players}) => {
     const {playersStats, globalStats} = summary;
     return (
-        <div className={cx.container}>
-            <p className={cx.introTitle}>IT'S OVER</p>
+        <article className={cx.container}>
+            <header className={cx.introTitle}>
+                <p>IT'S OVER</p>
+            </header>
 
-            <div className={cx.mostPunished}>
+            <section className={`${cx.mostPunished} ${gcx.skewedBorder}`}>
                 <i className={'ra ra-player-shot ra-5x'}/>
                 <p>Most punished player:</p>
                 <p><span className={cx.accent}>{globalStats.mostPunishedPlayer.name}</span></p>
-            </div>
+                <PlayerAvatar imgSrc={globalStats.mostPunishedPlayer.avatar}/>
+            </section>
 
-            <div className={cx.globals}>
+            <section className={`${cx.globals} ${gcx.skewedBorder}`}>
                 <p>First to finish the game: <span className={cx.accent}>{globalStats.firstFinished.name}</span></p>
                 <p>Total punishments: <span className={cx.accent}>{globalStats.punishCount}</span></p>
                 <p>Dice sum: <span className={cx.accent}>{globalStats.diceResultSum}</span></p>
-            </div>
+            </section>
 
-            <div className={cx.playerStats}>
+            <section className={`${cx.playerStats} ${gcx.skewedBorder}`}>
                 {playersStats.map(ps => {
                     const player = ps.player;
                     return (
@@ -51,8 +55,8 @@ const GameOverScreen = ({summary, players}) => {
                         </div>
                     )
                 })}
-            </div>
-        </div>
+            </section>
+        </article>
     )
 };
 

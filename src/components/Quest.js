@@ -70,7 +70,7 @@ class Quest extends React.Component {
         const bgStyle = {backgroundImage: `url('${Challenge.IMGS[challenge.type]}')`};
 
         return (
-            <div className={cx.questContainer}>
+            <div className={`${cx.questContainer}`}>
                 <div className={cx.image} style={bgStyle}/>
 
                 {challenge.type === Challenge.TYPES.MULTI_COND &&

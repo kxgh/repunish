@@ -12,6 +12,7 @@
   animation-name: pe-container-enter;
   animation-duration: .75s;
   font-size: 120%;
+  user-select: none;
 
   .player-avatar {
     transition: .5s;
@@ -68,13 +69,12 @@
   font-family: vars.$font-secondary;
 }
 
-.player-editor__avatar, .player-editor__name, .player-editor__footer, .player-editor__avatar__pages, .player-editor__luck {
+.player-editor__cell{
   margin: 0 auto;
   box-sizing: border-box;
   padding: 1em;
-  width: 50%;
+  width: 33%;
   transition: .5s;
-  //font-size: 100%;
 
   .player-editor__label {
     font-size: 75%;
@@ -175,10 +175,15 @@
   border: 2px solid vars.$color-cyan;
 }
 
+@media (max-width: vars.$screen-mid-w) {
+  .player-editor__cell {
+    width: 50%;
+  }
+}
 
 @media (max-width: vars.$screen-small-w) {
-  .player-editor__avatar, .player-editor__name, .player-editor__footer, .player-editor__avatar__pages, .player-editor__luck {
-    width: 95%;
+  .player-editor__cell {
+    width: 100%;
   }
 }
 

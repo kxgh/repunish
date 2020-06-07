@@ -117,25 +117,25 @@ class Home extends React.Component {
                     <div className={cx.imageEffect + ' ' + cx.imageHeader}/>
                     <h1 className={cx.homeLogo}>Punishment Game</h1>
                 </header>
-                <section className={`${cx.setupSection} ${cx.punishInfo}`}>
+                <section className={`${cx.setupSection} ${cx.punishInfo} ${gcx.skewedBorder}`}>
                     <h2>
                         Rules:
                     </h2>
                     <ul>
                         <li>take turns</li>
                         <li>roll the dice</li>
-                        <li>do badly or have bad luck = get punished</li>
-                        <li>do badly AND have bad luck = get punished much more</li>
+                        <li>do badly = get punished</li>
+                        <li>have no luck = receive additional punishment</li>
                     </ul>
                 </section>
-                <section className={cx.setupSection}>
+                <section className={`${cx.setupSection} ${gcx.skewedBorder}`}>
                     <HomePunishChooser punishments={punishments.getAll()} selected={chosenPunishments}
                                        onSelect={choosePunishment}
                                        invalid={highlightInvalid && !chosenPunishments.length}
                                        ref={this.punishChooserRef}
                     />
                 </section>
-                <section className={`${cx.setupSection} ${cx.setupPlayers}`}>
+                <section className={`${cx.setupSection} ${cx.setupPlayers} ${gcx.skewedBorder}`}>
                     <HomePlayerList players={players}
                                     hidden={isEditingPlayer}
                                     onPlayerAdd={e => savePlayer()}

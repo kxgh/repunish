@@ -77,7 +77,7 @@ class QuestDuel extends React.Component {
     }
 
     render() {
-        const {p1, p2, task, round, options, correct, qdPhase} = this.state;
+        const {p1, p2, task, round, options, qdPhase} = this.state;
         const {challenge, players} = this.props;
         const tutorialMsg = MISC.ON_TOUCH_DEVICE ? 'Tap on your avatar to answer.' : `${Consts.DUEL_P1_KEY.toUpperCase()} key ` +
             `for ${p1.name}, ${Consts.DUEL_P2_KEY.toUpperCase()} key for ${p2.name}`;

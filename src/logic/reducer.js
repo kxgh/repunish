@@ -49,8 +49,8 @@ function reducer(state, {type, payload = {}}) {
                 const finishedCount = currPlayerClone.finished ? (state.finishedCount + 1) : state.finishedCount;
                 return {
                     phase: Phase.WALKING,
-                    challenge: sage.generate(state.tiles, tileChosen.type, players[turn]),
                     players: utils.mergePlayers(players, currPlayerClone),
+                    challenge: sage.generate(state.tiles, tileChosen.type, currPlayerClone),
                     tile: tileChosen,
                     finishedCount
                 };
@@ -122,7 +122,7 @@ function reducer(state, {type, payload = {}}) {
             const {targetPlayer, targetPosition} = payload;
             const clone = utils.clonePlayer(targetPlayer);
             targetPlayer.position = Math.max(0, targetPosition);
-            targetPlayer.position = Math.min(state.tiles.length - 1, targetPosition);
+            targetPlayer.position = Math.min(state.tiles.length - 2, targetPlayer.position);
             return {
                 players: utils.mergePlayers(players, clone)
             };

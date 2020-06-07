@@ -1,16 +1,40 @@
 @use '../base/vars';
 
 .game-over {
-  font-size: 52px;
-  font-size: calc(14px + 4vh);
+  font-size: 32px;
+  font-size: calc(14px + 2vh);
   color: vars.$color-white;
   padding-top: 1em;
+  background-image: vars.$img-bg;
+  position: relative;
+  z-index: 0;
+  font-family: vars.$font-primary;
+  box-sizing: content-box;
+  overflow: hidden;
+
+  section {
+    position: relative;
+    background-color: vars.$color-bg-dark;
+  }
+
+  section:before {
+    background-color: vars.$color-purple;
+    overflow: hidden;
+  }
+
+  section:nth-child(3n+2):before{
+    background: linear-gradient(225deg, vars.$color-greenyellow, vars.$color-blue);
+  }
+
+  section:nth-child(3n):before{
+    background: linear-gradient(225deg, vars.$color-red, vars.$color-gold);
+  }
 
   .player-avatar {
     width: 2em;
     height: 2em;
     display: block;
-    margin: 0 auto;
+    margin: .5em auto;
   }
 }
 
@@ -21,15 +45,13 @@
 
 .game-over__intro-title {
   font-size: 150%;
-  margin: 0 auto 1em auto;
+  margin: 1em auto 2em auto;
   text-align: center;
   font-family: vars.$font-secondary;
 }
 
 .game-over__most-punished {
   width: 100%;
-  //background-color: vars.$color-red;
-  background-color: rgba(220, 20, 60, .2);
   text-align: center;
   padding-bottom: 1em;
   font-size: 150%;
@@ -41,7 +63,7 @@
 }
 
 .game-over__globals {
-  padding: 1em;
+  padding: 1em 15%;
   margin: 2em auto;
   background-color: rgba(93, 0, 255, 0.2);
 }
@@ -60,41 +82,30 @@
 
 .game-over__ps:nth-child(3n) {
   background-color: vars.$color-purple;
-  //background-color: rgba(93,0,255,0.2);
 }
 
 .game-over__ps:nth-child(3n+1) {
   background-color: vars.$color-red;
-  //background-color: rgba(220,20,60,.2);
 }
 
 .game-over__ps:nth-child(3n+2) {
   background-color: vars.$color-cyan;
   color: vars.$color-font-invert;
 
-  /*background-color: rgba(35,235,195,.2);
-  color: vars.$color-white;*/
 }
-
-.game-over__ps:hover {
-}
-
 
 .game-over__ps__name {
   text-align: center;
   margin-top: .1em;
 }
 
-@media (max-width: vars.$screen-mid-w) {
-  .game-over {
-    font-size: 32px;
-    font-size: calc(14px + 2vh);
-  }
-}
-
 @media (max-width: vars.$screen-small-w) {
   .game-over {
     font-size: 24px;
     font-size: calc(14px + 1vh);
+  }
+
+  .game-over__globals{
+    padding: 1em 5%;
   }
 }

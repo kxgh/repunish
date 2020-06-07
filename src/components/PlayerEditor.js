@@ -7,6 +7,7 @@ import PlayerAvatar from "./PlayerAvatar";
 
 const cx = {
     container: 'player-editor',
+    cell: 'player-editor__cell',
     bg: 'player-editor-bg',
     bgHidden: 'player-editor-bg--hidden',
     hidden: 'player-editor--hidden',
@@ -22,7 +23,7 @@ const cx = {
 };
 
 const AvatarBtn = (pname, nthSrc, onClick) => {
-    const avatarSrc = avatars.nthSrc(nthSrc);
+    const avatarSrc = avatars.getNthSrc(nthSrc);
     return (
         <PlayerAvatar imgSrc={avatarSrc} key={nthSrc} onClick={e => {
             onClick(avatarSrc)
@@ -31,15 +32,18 @@ const AvatarBtn = (pname, nthSrc, onClick) => {
 };
 
 const luckToElem = luck => {
+    const el = (cx, num) => {
+        return <><i className={cx}/>{` (${(num < 0 ? '-' : '+') + Math.abs(num)})`}</>
+    };
     if (luck === 1)
-        return <i className={"ra ra-clover"}/>; //return 'favorable';
+        return el('ra ra-clover', luck);
     if (luck > 1)
-        return <i className={"ra ra-angel-wings"}/>; //return 'blessed';
+        return el('ra ra-angel-wings', luck);
     if (luck === -1)
-        return <i className={"ra ra-player-despair"}/>;//return 'unfavorable';
+        return el('ra ra-player-despair', luck);
     if (luck < -1)
-        return <i className={"ra ra-broken-skull"}/>;//return 'cursed';
-    return <i className={"ra ra-player"}/>;//return 'default';
+        return el('ra ra-broken-skull', luck);
+    return el('ra ra-player', luck);
 };
 
 const avatarResultsPerPage = 8;
@@ -79,8 +83,8 @@ const PlayerEditor = ({player, onPlayerSave, onPlayerDelete, hidden}) => {
     const bgClassName = [cx.bg, hidden ? cx.bgHidden : ''].join(' ');
     return (
         <>
-            <ul className={containerClassName}>
-                <li className={avatarClassName} onClick={toggleChoosingAvatar}>
+            <div className={containerClassName}>
+                <div className={`${avatarClassName} ${cx.cell}`} onClick={toggleChoosingAvatar}>
                     {!isChoosingAvatar &&
                     <>
                         <p className={cx.label}>{name}'s avatar:</p>
@@ -95,14 +99,14 @@ const PlayerEditor = ({player, onPlayerSave, onPlayerDelete, hidden}) => {
                             }
                         ))}
                     </>}
-                </li>
+                </div>
                 {isChoosingAvatar &&
-                <li className={cx.avatarPages}>
+                <div className={`${cx.avatarPages} ${cx.cell}`}>
                     <span onClick={prevPage} className={cx.btn}>&lt; prev page</span>
                     <span onClick={nextPage} className={cx.btn}>next page &gt;</span>
-                </li>}
+                </div>}
                 {!isChoosingAvatar &&
-                <li className={cx.name}>
+                <div className={`${cx.name} ${cx.cell}`}>
                     <p className={cx.label}>Player's name:</p>
                     <input type="text" value={name}
                            onChange={e => setName(e.target.value)}
@@ -113,18 +117,18 @@ const PlayerEditor = ({player, onPlayerSave, onPlayerDelete, hidden}) => {
                            onClick={e => e.target.value === player.name && setName('')}
                     />
 
-                </li>}
+                </div>}
                 {!isChoosingAvatar &&
-                <li className={cx.luck} onClick={togglePlayerLuck}>
+                <div className={`${cx.luck} ${cx.cell}`} onClick={togglePlayerLuck}>
                     <p>Player's luck: {luckToElem(luck)}</p>
-                </li>
+                </div>
                 }
-                {!isChoosingAvatar && <li className={cx.footer}>
+                {!isChoosingAvatar && <div className={`${cx.footer} ${cx.cell}`}>
                     <span onClick={e => onPlayerDelete(player)} className={cx.btn}><i
                         className="ra ra-poison-cloud"/></span>
                     <span onClick={save} className={cx.btn}>✓</span>
-                </li>}
-            </ul>
+                </div>}
+            </div>
             <div className={bgClassName}/>
         </>
     )

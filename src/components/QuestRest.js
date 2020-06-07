@@ -9,7 +9,7 @@ const QuestRest = ({challenge, actions}) => (
             <p className={cx.type}>{challenge.type}</p>
             <p className={`${cx.task} ${cx.taskLarge}`}>
                 <span className={cx.accent}>Nothing happens.&nbsp;</span>
-                That's a good thing, right?
+                No action required.
             </p>
         </div>
         <button onClick={actions.onFulfill} className={cx.fulfillBtn}>✓</button>

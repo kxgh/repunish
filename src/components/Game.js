@@ -46,24 +46,24 @@ class Game extends React.Component {
         const {dispatch} = this;
         let content = null;
         if (phase < Phase.GAME_OVER)
-            content = <Board
-                turn={turn}
-                players={players}
-                tiles={tiles}
-                diceResult={diceResult}
-                challenge={challenge}
-                dispatch={dispatch}
-            />;
+            content = <div className={cx.game}>
+                <main>
+                    <Board
+                        turn={turn}
+                        players={players}
+                        tiles={tiles}
+                        diceResult={diceResult}
+                        challenge={challenge}
+                        dispatch={dispatch}
+                    />
+                </main>
+            </div>;
         else
             content = <GameOverScreen summary={stats.summarize(players)} players={players}/>
 
         return (
             <PhaseContext.Provider value={phase}>
-                <div className={cx.game}>
-                    <main>
-                        {content}
-                    </main>
-                </div>
+                {content}
             </PhaseContext.Provider>
         )
     }

@@ -223,14 +223,18 @@ const genDragon = (player) => {
  * @param {array<Tile>} tiles
  */
 const genPortal = (player, tiles) => {
-    let newPos, luck = utils.getPlayersLuck(player);
+    let moveBy, luck = utils.getPlayersLuck(player);
     if (random.rollForChance(95 - luck)) {
         const offset = Math.floor(tiles.length / 5);
-        newPos = random.randomInRange(player.position - offset, player.position + offset + 5 * luck);
-    } else newPos = random.randomInRange(0, tiles.length - 2 + 5 * luck);
+        moveBy = random.randomInRange(-offset, offset + 5 * Math.max(luck, 0));
+    } else moveBy = random.randomInRange(0, tiles.length - 2 + 5 * luck);
+    const truePos = Math.min(tiles.length - 2, Math.max(0, moveBy + player.position));
     return new Challenge({
         type: Challenge.TYPES.PORTAL,
-        task: Math.min(tiles.length - 2, Math.max(0, newPos))
+        task: {
+            by: moveBy,
+            to: truePos
+        }
     });
 };
 

@@ -8,7 +8,8 @@ import Challenge from "./Challenge";
 export const gcx = {
     attentionBg: 'pgg-attention-bg',
     btnLarge: 'pgg-btn-l',
-    appearAnim: 'pgg-appear-anim'
+    appearAnim: 'pgg-appear-anim',
+    skewedBorder: 'pgg-skewed-border'
 };
 
 export const stats = (() => {
@@ -275,12 +276,12 @@ export const avatars = (() => {
     let avatars;
     const size = Consts.AVATAR_COUNT;
     return {
-        nthSrc(n) {
+        getNthSrc(n) {
             return `${Consts.ASSET_PATH}img/avatars/${n % size}.jpg`
         },
-        get() {
+        getAll() {
             if (!avatars)
-                avatars = random.shuffle([...Array(size).keys()].map(i => this.nthSrc(i)));
+                avatars = random.shuffle([...Array(size).keys()].map(i => this.getNthSrc(i)));
             return avatars
         },
         size() {

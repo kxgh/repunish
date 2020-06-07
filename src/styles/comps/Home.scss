@@ -185,18 +185,6 @@ section.punish__info {
   position: relative;
 }
 
-.setup-section:before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  bottom: -1px;
-  left: -1px;
-  right: -1px;
-  background: #fff;
-  z-index: -1;
-  transform: skew(-1deg, -1deg);
-}
-
 .setup-section:nth-child(2):before {
   background: linear-gradient(225deg, vars.$color-greenyellow, vars.$color-blue);
 }

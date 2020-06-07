@@ -28,43 +28,7 @@
   background-repeat: no-repeat;
   background-size: 50%;
   transition: 1s;
-
-  /*animation-name: tst;
-  animation-duration: .4s;*/
 }
-
-/*@keyframes tst{
-  from{
-    transform: scale(4);
-  }
-  to{
-    transform: scale(1);
-  }
-}*/
-
-/*.board-tile--bg-finish {
-  background-image: url("/img/finish.png");
-}
-
-.board-tile--bg-math {
-  background-image: url("/img/math.png");
-}
-
-.board-tile--bg-multi {
-  background-image: url("/img/multi.png");
-}
-
-.board-tile--bg-relay {
-  background-image: url("/img/relay.png");
-}
-
-.board-tile--bg-rest {
-  background-image: url("/img/rest.png");
-}
-
-.board-tile--bg-geo {
-  background-image: url("/img/geo.png");
-}*/
 
 .board-tile--clickable {
   cursor: pointer;
@@ -138,14 +102,6 @@
   transform: translateX(105%);
   flex-wrap: wrap;
   align-items: flex-end;
-
-
-  /*.board-tile__players__turn{
-    animation-name: player-avatar-turn-anim;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite;
-    animation-direction: reverse;
-  }*/
 }
 
 .board-tile__players__avatar {
@@ -153,6 +109,7 @@
   animation-name: player-avatar-appear-anim;
   animation-duration: .5s;
   transform: scale(1);
+  border-radius: 50%;
 }
 
 .board-tile__players__avatar--turn {
