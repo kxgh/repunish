@@ -14,9 +14,9 @@ const getLoadablePic = src => new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => {
         console.log('loaded ' + src);
-        resolve(true)
+        resolve(1)
     };
-    img.onerror = () => reject(new Error(src + ' not found.'));
+    img.onerror = () => {console.warn(src+' not found');resolve(1)};
     img.src = src;
 });
 
@@ -30,12 +30,12 @@ const loadIntro = () => {
         toLoad = toLoad.concat([document.fonts.ready]);
     } catch (err) {
     }
-    return Promise.allSettled(toLoad)
+    return Promise.all(toLoad)
 };
 
 const loadBoard = () => {
     const toLoad = Object.values(Challenge.IMGS).map(i => getLoadablePic(i)).concat([sage.init()]);
-    return Promise.allSettled(toLoad)
+    return Promise.all(toLoad)
 };
 
 const LoadingScreen = ({phase, onLoadComplete}) => {
