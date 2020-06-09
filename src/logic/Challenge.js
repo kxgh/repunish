@@ -68,6 +68,8 @@ Challenge.getTypeAllure = type => {
             return 6;
         case t.TIMED_EMBLEM:
             return 1;
+        case t.DUEL:
+            return 1;
         case t.TIMED_MATH:
             return 3;
         case t.DRAGON:

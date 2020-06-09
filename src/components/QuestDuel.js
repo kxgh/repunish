@@ -30,7 +30,8 @@ class QuestDuel extends React.Component {
             correct: false,
             qdPhase: QD_PHASES.INTRO,
             round: 0,
-            timeout: null
+            timeout: null,
+            showFulfillBtn: false
         };
         this.begin = this.begin.bind(this);
         this.restart = this.restart.bind(this);
@@ -54,12 +55,17 @@ class QuestDuel extends React.Component {
     }
 
     playerAnswered(player, idledPlayer) {
-        clearTimeout(this.state.timeout);
         if (this.state.qdPhase === QD_PHASES.SOLVING) {
+            clearTimeout(this.state.timeout);
             this.props.actions.onIncorrect(this.state.correct ? idledPlayer : player);
             this.setState({
                 qdPhase: QD_PHASES.OVER
             });
+            setTimeout(() => {
+                this.setState({
+                    showFulfillBtn: true
+                })
+            }, DURATIONS.QUEST_DUEL * 2)
         }
     }
 
@@ -77,7 +83,7 @@ class QuestDuel extends React.Component {
     }
 
     render() {
-        const {p1, p2, task, round, options, qdPhase} = this.state;
+        const {p1, p2, task, round, options, qdPhase, showFulfillBtn} = this.state;
         const {challenge, players} = this.props;
         const tutorialMsg = MISC.ON_TOUCH_DEVICE ? 'Tap on your avatar to answer.' : `${Consts.DUEL_P1_KEY.toUpperCase()} key ` +
             `for ${p1.name}, ${Consts.DUEL_P2_KEY.toUpperCase()} key for ${p2.name}`;
@@ -102,21 +108,21 @@ class QuestDuel extends React.Component {
                         <TimeElapsedIndicator key={round}
                                               duration={DURATIONS.QUEST_DUEL}
                                               paused={qdPhase !== QD_PHASES.SOLVING}/>
-                        {qdPhase === QD_PHASES.SOLVING && <div className={cx.avatarBtns}>
-                            <p className={cx.avatarBtn} onClick={e => this.playerAnswered(p1, p2)}>
-                                <PlayerAvatar imgSrc={p1.avatar}/>
-                            </p>
-                            <p className={cx.avatarBtn} onClick={e => this.playerAnswered(p2, p1)}>
-                                <PlayerAvatar imgSrc={p2.avatar}/>
-                            </p>
-                        </div>}
-
                     </>}
+                    {qdPhase < QD_PHASES.OVER && <div className={cx.avatarBtns}>
+                        <p className={cx.avatarBtn} onClick={e => this.playerAnswered(p1, p2)}>
+                            <PlayerAvatar imgSrc={p1.avatar}/>
+                            {!MISC.ON_TOUCH_DEVICE && <span>{Consts.DUEL_P1_KEY.toUpperCase()}</span>}
+                        </p>
+                        <p className={cx.avatarBtn} onClick={e => this.playerAnswered(p2, p1)}>
+                            <PlayerAvatar imgSrc={p2.avatar}/>
+                            {!MISC.ON_TOUCH_DEVICE && <span>{Consts.DUEL_P2_KEY.toUpperCase()}</span>}
+                        </p>
+                    </div>}
                 </div>
-                {qdPhase >= QD_PHASES.OVER && <>
-                    <Verdict challenge={challenge} players={players}/>
-                    <button onClick={this.props.actions.onFulfill} className={cx.fulfillBtn}>✓</button>
-                </>}
+                {qdPhase >= QD_PHASES.OVER && <Verdict challenge={challenge} players={players}/>}
+                {showFulfillBtn &&
+                <button onClick={this.props.actions.onFulfill} className={cx.fulfillBtn}>✓</button>}
             </div>)
     }
 }

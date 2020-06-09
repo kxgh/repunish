@@ -192,6 +192,11 @@ $-image-size: vars.$tile-type-size;
   cursor: pointer;
   transition: background-color .5s;
   padding: 1em;
+
+  span{
+    display: block;
+    color: #000;
+  }
 }
 .quest__avatar-btn:hover{
   background-color: vars.$color-cyan;
@@ -202,7 +207,6 @@ $-image-size: vars.$tile-type-size;
 
 @media (max-height: vars.$screen-small-h) {
   .quest {
-    //font-size: 26px;
   }
   .quest__task--accent {
     display: inline-block;
@@ -210,7 +214,6 @@ $-image-size: vars.$tile-type-size;
 }
 
 @media (orientation: landscape) {
-
 }
 
 @media (min-width: vars.$screen-small-w) {
