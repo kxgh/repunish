@@ -17,7 +17,10 @@ const QuestPortal = ({challenge, actions, player, dispatch}) => {
                 <p className={cx.type}>{challenge.type}</p>
                 <p className={`${cx.task} ${cx.taskLarge}`}>
                     <span className={cx.accent}>{`${player.name} `}</span>
-                    enters the portal and appears at a random place! {moveText}
+                    enters the portal and appears at a random place!
+                </p>
+                <p className={`${cx.task}`}>
+                    {moveText}
                 </p>
             </div>
             <button onClick={e => {

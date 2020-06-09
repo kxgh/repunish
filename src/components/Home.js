@@ -26,6 +26,8 @@ const cx = {
     playerName: 'player__name',
     playerAvatar: 'player__avatar',
 
+    logoGlyph: 'ra ra-death-skull ra-lg home__logo-glyph',
+
     start: 'home__start'
 };
 
@@ -115,7 +117,9 @@ class Home extends React.Component {
             <article className={cx.container}>
                 <header className={cx.imageContainer}>
                     <div className={cx.imageEffect + ' ' + cx.imageHeader}/>
-                    <h1 className={cx.homeLogo}>Punishment Game</h1>
+                    <h1 className={cx.homeLogo}>
+                        Punishment&nbsp;<i className={cx.logoGlyph}/>&nbsp;Game
+                    </h1>
                 </header>
                 <section className={`${cx.setupSection} ${cx.punishInfo} ${gcx.skewedBorder}`}>
                     <h2>
@@ -124,8 +128,8 @@ class Home extends React.Component {
                     <ul>
                         <li>take turns</li>
                         <li>roll the dice</li>
-                        <li>do badly = get punished</li>
-                        <li>have no luck = receive additional punishment</li>
+                        <li>do badly = <i className={cx.logoGlyph}/></li>
+                        <li>have no luck = <i className={cx.logoGlyph}/></li>
                     </ul>
                 </section>
                 <section className={`${cx.setupSection} ${gcx.skewedBorder}`}>
@@ -152,7 +156,7 @@ class Home extends React.Component {
                         if (validateBeforeStart())
                             onStart({players, chosenPunishments})
                     }}>
-                        Begin
+                        <i className={cx.logoGlyph}/>&nbsp;Begin&nbsp;<i className={cx.logoGlyph}/>
                     </h2>
                 </footer>
 

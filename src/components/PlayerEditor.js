@@ -33,7 +33,8 @@ const AvatarBtn = (pname, nthSrc, onClick) => {
 
 const luckToElem = luck => {
     const el = (cx, num) => {
-        return <><i className={cx}/>{` (${(num < 0 ? '-' : '+') + Math.abs(num)})`}</>
+        //return <><i className={cx}/>{` (${(num < 0 ? '-' : '+') + Math.abs(num)})`}</>
+        return <>{` ${(num < 0 ? '-' : '+') + Math.abs(num)}`}</>
     };
     if (luck === 1)
         return el('ra ra-clover', luck);

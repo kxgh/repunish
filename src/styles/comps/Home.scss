@@ -18,6 +18,11 @@ $-intropic-saturate: 2;
   overflow-x: hidden;
 }
 
+.home__logo-glyph {
+  color: vars.$color-red;
+}
+
+
 .home__image-container {
   text-align: center;
   height: 5vw * 10;
@@ -108,7 +113,8 @@ section.punish__info {
   animation-direction: alternate-reverse;
   animation-iteration-count: infinite;
 }
-.home__footer-image:hover{
+
+.home__footer-image:hover {
 }
 
 @keyframes header-image-anim {
@@ -164,10 +170,6 @@ section.punish__info {
   z-index: 3;
   position: relative;
   display: inline-block;
-}
-
-.home__start:hover {
-  filter: invert(1);
 }
 
 .intro__rules {

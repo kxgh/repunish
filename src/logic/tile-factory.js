@@ -6,11 +6,11 @@ import * as Consts from "./consts";
 const typeGen = (() => {
     const t = Challenge.TYPES;
 
-    const multis = [t.MULTI_COND, t.GROUP_RELAY];
+    const multis = [t.MULTI_COND, t.GROUP_RELAY, t.DUEL];
     const others = [];
-    others.push(t.TIMED_CAPITAL, t.TIMED_FLAG, t.TIMED_EMBLEM, t.TIMED_MATH, t.REST, t.REST, t.DUEL);
+    others.push(t.TIMED_CAPITAL, t.TIMED_FLAG, t.TIMED_EMBLEM, t.TIMED_MATH, t.REST);
 
-    return () => random.choice(random.rollForChance(40) ? multis : others)
+    return () => random.choice(random.rollForChance(35) ? multis : others)
 })();
 
 const setDragon = (tiles, players) => {

@@ -56,13 +56,13 @@ const genTimedMath = p => {
 
     let n1, n2;
     if (operation === '*') {
-        n1 = random.randomInRange(11, 98);
+        n1 = random.randomInRange(11, Math.max(20, 98 - luck * 40));
         n2 = random.randomInRange(3, 9);
         if (luck < 1 && (n1 % 10 === 0 || n1 % 11 === 0))
             n1++;
 
     } else if (operation === '-') {
-        n1 = random.randomInRange(100, 200);
+        n1 = random.randomInRange(100, Math.max(200 - luck * 30, 110));
         n2 = random.randomInRange(50, 199 - 20 * luck);
     } else {
         n1 = random.rollForChance(20 + luck * 10) ? random.randomInRange(19, 59) : random.randomInRange(100, 800);
@@ -99,10 +99,10 @@ const genQuizGeneric = (p, challengeType) => {
     if (challengeType === Challenge.TYPES.TIMED_CAPITAL)
         timedWhatProp = 'timedCapital';
 
-    const diffs = ['easy', 'normal', 'hard'];
     const luck = utils.getPlayersLuck(p);
+    const diffs = ['easy', 'normal', luck < 2 ? 'hard' : 'normal'];
     if (luck > 0)
-        diffs.push('normal', 'normal');
+        diffs.push('easy', 'normal');
     if (luck > 1)
         diffs.push('easy', 'easy');
     if (luck < 0)
@@ -135,10 +135,10 @@ const genImgQuizGeneric = (p, challengeType) => {
     if (challengeType === Challenge.TYPES.TIMED_EMBLEM)
         timedWhatProp = 'timedEmblem';
 
-    const diffs = ['easy', 'normal', 'hard'];
     const luck = utils.getPlayersLuck(p);
+    const diffs = ['easy', 'normal', luck < 2 ? 'hard' : 'normal'];
     if (luck > 0)
-        diffs.push('normal', 'normal');
+        diffs.push('easy', 'normal');
     if (luck > 1)
         diffs.push('easy', 'easy');
     if (luck < 0)
