@@ -35,6 +35,27 @@ const genGroupRelay = p => {
 /**
  * @param {Player} p
  */
+const genCountdown = p => {
+    const luck = Math.max(Math.min(utils.getPlayersLuck(p), 2), -2);
+    const hideAt = random.randomInRange(1, Math.max(4 + luck, 2))
+    const startFrom = hideAt + random.randomInRange(3, Math.max(5 - luck, 4));
+    const interval = random.randomInRange(500, 720) + luck * 60;
+    const tolerance = Math.floor((3 * interval / 4) * (1.1 + 0.1 * luck));
+    const task = {
+        startFrom,
+        hideAt,
+        interval,
+        tolerance
+    };
+    return new Challenge({
+        task,
+        type: Challenge.TYPES.COUNTDOWN
+    });
+};
+
+/**
+ * @param {Player} p
+ */
 const genTimedMath = p => {
     const possibleOperations = ['+', '-', '*'];
     const luck = utils.getPlayersLuck(p);
@@ -255,6 +276,8 @@ const generate = (tiles, tileType, player) => {
             return genDuel();
         case Challenge.TYPES.TIMED_MATH:
             return genTimedMath(player);
+        case Challenge.TYPES.COUNTDOWN:
+            return genCountdown(player);
         case Challenge.TYPES.TIMED_FLAG:
             return genImgQuizGeneric(player, Challenge.TYPES.TIMED_FLAG);
         case Challenge.TYPES.TIMED_EMBLEM:

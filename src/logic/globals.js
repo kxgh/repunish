@@ -170,7 +170,7 @@ export const utils = (() => {
             return items.map(item => utils.cloneItem(item))
         },
         clonePlayer: (p) => {
-            const np = Object.assign(new Player(), p);
+            const np = Object.assign(new Player({id: p.id}), p);
             np.items = utils.cloneItems(np.items);
             return np
         },

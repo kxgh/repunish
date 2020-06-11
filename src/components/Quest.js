@@ -15,6 +15,7 @@ import QuestDragon from "./QuestDragon";
 import QuestPortal from "./QuestPortal";
 import {DURATIONS} from "../logic/globals";
 import QuestDuel from "./QuestDuel";
+import QuestCountdown from "./QuestCountdown";
 
 export const cx = {
     questContainer: 'quest',
@@ -75,6 +76,8 @@ class Quest extends React.Component {
 
                 {challenge.type === Challenge.TYPES.MULTI_COND &&
                 <QuestMultiCond challenge={challenge} actions={defaultQuestActions} players={players}/>}
+                {challenge.type === Challenge.TYPES.COUNTDOWN &&
+                <QuestCountdown challenge={challenge} actions={defaultQuestActions} players={players} player={player}/>}
                 {challenge.type === Challenge.TYPES.REST &&
                 <QuestRest challenge={challenge} actions={defaultQuestActions}/>}
                 {challenge.type === Challenge.TYPES.DRAGON &&

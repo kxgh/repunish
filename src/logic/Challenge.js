@@ -4,7 +4,7 @@ class Challenge {
 
     /**
      * @param props
-     * @param {string} [props.task]
+     * @param {string|object} [props.task]
      * @param {array<string>} [props.options]
      * @param {string} [props.correctOpt]
      * @param {string} [props.type]
@@ -32,6 +32,7 @@ Challenge.TYPES = {
     DRAGON: 'Dragon',
     PORTAL: 'Portal',
     GROUP_RELAY: 'Bomb',
+    COUNTDOWN: 'Countdown',
     DUEL: 'Duel',
     REST: 'Rest',
     FINISH: 'Finish'
@@ -47,6 +48,7 @@ Challenge.TYPES = {
         [t.TIMED_FLAG]: `${base}flag.png`,
         [t.TIMED_EMBLEM]: `${base}emblem.png`,
         [t.GROUP_RELAY]: `${base}bomb.png`,
+        [t.COUNTDOWN]: `${base}countdown.png`,
         [t.DUEL]: `${base}duel.png`,
         [t.DRAGON]: `${base}dragon.png`,
         [t.PORTAL]: `${base}portal.png`,
@@ -80,6 +82,8 @@ Challenge.getTypeAllure = type => {
             return 6;
         case t.PORTAL:
             return 5;
+        case t.COUNTDOWN:
+            return 7;
         case t.MULTI_COND:
             return 2;
         default: return 5

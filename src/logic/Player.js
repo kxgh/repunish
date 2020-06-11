@@ -13,8 +13,6 @@ class Player {
         this.items = [];
         this.finished = false;
         this.punishment = null;
-
-        id++;
     }
 }
 

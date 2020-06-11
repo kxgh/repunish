@@ -8,7 +8,7 @@ const typeGen = (() => {
 
     const multis = [t.MULTI_COND, t.GROUP_RELAY, t.DUEL];
     const others = [];
-    others.push(t.TIMED_CAPITAL, t.TIMED_FLAG, t.TIMED_EMBLEM, t.TIMED_MATH, t.REST);
+    others.push(t.TIMED_CAPITAL, t.TIMED_FLAG, t.TIMED_EMBLEM, t.TIMED_MATH, t.REST, t.COUNTDOWN);
 
     return () => random.choice(random.rollForChance(35) ? multis : others)
 })();

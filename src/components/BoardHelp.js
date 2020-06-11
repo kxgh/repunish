@@ -20,6 +20,9 @@ const getHelpFor = type => {
         case t.PORTAL:
             return `Teleports the entering player to a random tile (mostly) nearby.` +
                 ``;
+        case t.COUNTDOWN:
+            return `Player has to press a button when time countdown reaches zero.` +
+                ``;
         case t.DRAGON:
             return `Dragon's mission is to find a specific player and send him back to start. Other players visiting ` +
                 `the dragon are safe from his wrath.`;
