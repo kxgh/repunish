@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import {cx} from "./Quest";
 import Challenge from "../logic/Challenge";
 import Player from "../logic/Player";
-import {DURATIONS, MISC, random} from "../logic/globals";
-import TimeElapsedIndicator from "./TimeElapsedIndicator";
 import PlayerAvatar from "./PlayerAvatar";
 import Verdict from "./Verdict";
-import * as Consts from "../logic/consts";
 
 const QC_PHASES = {
     INTRO: 1,

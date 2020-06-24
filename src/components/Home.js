@@ -1,5 +1,5 @@
 import React from "react";
-import {punishments, gcx} from "../logic/globals";
+import {punishments, gcx, MISC} from "../logic/globals";
 import Player from "../logic/Player";
 import PropTypes from 'prop-types';
 import HomePunishChooser from "./HomePunishChooser";
@@ -34,9 +34,7 @@ const cx = {
 const scrollTo = el => {
     if (el.current)
         el = el.current;
-    if (el && el.scrollIntoView) {
-        el.scrollIntoView({behavior: 'smooth'});
-    } else window.scrollTo(0, el.offsetTop);
+    MISC.scrollToElem(el, false);
     return true
 };
 

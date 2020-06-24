@@ -13,7 +13,7 @@ import QuestFinish from "./QuestFinish";
 import QuestTimedQuizEmblem from "./QuestTimedQuizEmblem";
 import QuestDragon from "./QuestDragon";
 import QuestPortal from "./QuestPortal";
-import {DURATIONS} from "../logic/globals";
+import {DURATIONS, MISC} from "../logic/globals";
 import QuestDuel from "./QuestDuel";
 import QuestCountdown from "./QuestCountdown";
 
@@ -42,6 +42,11 @@ export const cx = {
 
 
 class Quest extends React.Component {
+
+    componentDidMount() {
+        setTimeout(MISC.scrollToTop, 0)
+    }
+
     render() {
         const {challenge, player, players, dispatch} = this.props;
 
@@ -60,16 +65,9 @@ class Quest extends React.Component {
             }
         };
 
-        /*const fulfill = e => {
-            const newItems = [];
-            if(delme++ === 1)
-                newItems.push(ItemFactory.createItemOfType('CLOVER'));
-            //dispatch(Actions.FULFILL_QUEST,{pickedItems:newItems});
-        };*/
         if (!challenge)
             return <div className={cx.questContainer}>((((empty))))</div>;
         const bgStyle = {backgroundImage: `url('${Challenge.IMGS[challenge.type]}')`};
-
         return (
             <div className={`${cx.questContainer}`}>
                 <div className={cx.image} style={bgStyle}/>

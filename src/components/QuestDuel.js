@@ -31,12 +31,13 @@ class QuestDuel extends React.Component {
             qdPhase: QD_PHASES.INTRO,
             round: 0,
             timeout: null,
-            showFulfillBtn: false
+            showFulfillBtn: false,
+            positionsSwapped: false
         };
         this.begin = this.begin.bind(this);
+        this.swapPositions = this.swapPositions.bind(this);
         this.restart = this.restart.bind(this);
         this.playerAnswered = this.playerAnswered.bind(this);
-
     }
 
     restart() {
@@ -46,6 +47,14 @@ class QuestDuel extends React.Component {
             ns.timeout = setTimeout(this.restart, DURATIONS.QUEST_DUEL);
             prevState.qdPhase === QD_PHASES.INTRO && (ns.qdPhase = QD_PHASES.SOLVING);
             return ns
+        });
+    }
+
+    swapPositions() {
+        this.setState(prevState => {
+            return {
+                positionsSwapped: !prevState.positionsSwapped
+            }
         });
     }
 
@@ -83,10 +92,31 @@ class QuestDuel extends React.Component {
     }
 
     render() {
-        const {p1, p2, task, round, options, qdPhase, showFulfillBtn} = this.state;
+        const {p1, p2, task, round, options, qdPhase, showFulfillBtn, positionsSwapped} = this.state;
         const {challenge, players} = this.props;
         const tutorialMsg = MISC.ON_TOUCH_DEVICE ? 'Tap on your avatar to answer.' : `${Consts.DUEL_P1_KEY.toUpperCase()} key ` +
             `for ${p1.name}, ${Consts.DUEL_P2_KEY.toUpperCase()} key for ${p2.name}`;
+
+        const getAvatarBtns = () => {
+            const btns = [];
+            btns.push(<p className={cx.avatarBtn} onClick={e => this.playerAnswered(p1, p2)}>
+                    <PlayerAvatar imgSrc={p1.avatar}/>
+                    {!MISC.ON_TOUCH_DEVICE && <span>{Consts.DUEL_P1_KEY.toUpperCase()}</span>}
+                </p>
+            );
+            if (positionsSwapped)
+                btns.unshift(<p className={cx.avatarBtn} onClick={e => this.playerAnswered(p2, p1)}>
+                    <PlayerAvatar imgSrc={p2.avatar}/>
+                    {!MISC.ON_TOUCH_DEVICE && <span>{Consts.DUEL_P2_KEY.toUpperCase()}</span>}
+                </p>);
+            else btns.push(<p className={cx.avatarBtn} onClick={e => this.playerAnswered(p2, p1)}>
+                <PlayerAvatar imgSrc={p2.avatar}/>
+                {!MISC.ON_TOUCH_DEVICE && <span>{Consts.DUEL_P2_KEY.toUpperCase()}</span>}
+            </p>);
+            return <>
+                {btns[0]}{btns[1]}
+            </>
+        };
 
         return (
             <div>
@@ -101,6 +131,9 @@ class QuestDuel extends React.Component {
                         </p>
                         <p>{tutorialMsg}</p>
                         <button className={cx.revealBtn} onClick={this.begin}>We're ready</button>
+                        {MISC.ON_TOUCH_DEVICE && <button style={{marginTop: 0}} className={cx.revealBtn}
+                                onClick={this.swapPositions}>Swap positions
+                        </button>}
                     </>}
                     {qdPhase > QD_PHASES.INTRO && <>
                         <p className={cx.task}>Press when contains: <span className={cx.accent}>{task}</span></p>
@@ -110,14 +143,7 @@ class QuestDuel extends React.Component {
                                               paused={qdPhase !== QD_PHASES.SOLVING}/>
                     </>}
                     {qdPhase < QD_PHASES.OVER && <div className={cx.avatarBtns}>
-                        <p className={cx.avatarBtn} onClick={e => this.playerAnswered(p1, p2)}>
-                            <PlayerAvatar imgSrc={p1.avatar}/>
-                            {!MISC.ON_TOUCH_DEVICE && <span>{Consts.DUEL_P1_KEY.toUpperCase()}</span>}
-                        </p>
-                        <p className={cx.avatarBtn} onClick={e => this.playerAnswered(p2, p1)}>
-                            <PlayerAvatar imgSrc={p2.avatar}/>
-                            {!MISC.ON_TOUCH_DEVICE && <span>{Consts.DUEL_P2_KEY.toUpperCase()}</span>}
-                        </p>
+                        {getAvatarBtns()}
                     </div>}
                 </div>
                 {qdPhase >= QD_PHASES.OVER && <Verdict challenge={challenge} players={players}/>}

@@ -11,7 +11,7 @@ import Challenge from "../logic/Challenge";
 import BoardTurnInfo from "./BoardTurnInfo";
 import BoardDiceRoller from "./BoardDiceRoller";
 import BoardHelp from "./BoardHelp";
-import {gcx, DURATIONS} from "../logic/globals";
+import {gcx, DURATIONS, MISC} from "../logic/globals";
 
 const cx = {
     boardContainer: 'board',
@@ -37,20 +37,13 @@ const onRollClick = dispatch => {
 };
 
 const onTileClicked = (tile, dispatch) => {
-    console.log('step chosen')
     dispatch(ACTIONS.STEP_CHOOSE, tile);
     setTimeout(() => {
         dispatch(ACTIONS.SHOW_QUEST);
     }, DURATIONS.STEP_CHOOSE)
 };
 
-const scrollToCurrentPlayer = (board, insta) => {
-    if (board) {
-        if (!insta && board.currentPlayerTileRef && board.currentPlayerTileRef.scrollIntoView) {
-            board.currentPlayerTileRef.scrollIntoView({behavior: 'smooth'});
-        } else window.scrollTo(0, board.currentPlayerTileRef.offsetTop);
-    } else console.warn('err: no board specified to scroller')
-};
+const scrollToCurrentPlayer = (board, insta) => MISC.scrollToElem(board.currentPlayerTileRef, insta);
 
 const BoardTiles = ({gameProps, phase, refSetter, helping, onHelp}) => {
     const {players, turn, diceResult, tiles, dispatch} = gameProps;

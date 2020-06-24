@@ -269,7 +269,15 @@ export const random = (() => {
 
 export const MISC = {
     DRAGON_TARGET_NAME: null,
-    ON_TOUCH_DEVICE: navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i)
+    ON_TOUCH_DEVICE: navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i),
+    scrollToElem(elem, insta){
+        if(!insta && elem.scrollIntoView){
+            elem.scrollIntoView({behavior: 'smooth'});
+        }else window.scrollTo(0, elem.offsetTop);
+    },
+    scrollToTop(){
+        window.scrollTo(0,0)
+    }
 };
 
 export const avatars = (() => {
