@@ -1,25 +1,63 @@
 import axios from "axios";
-import {utils, random, MISC} from "./globals";
+import {MISC, random, utils} from "./globals";
 import Challenge from "./Challenge";
 import * as Consts from "./consts";
 
-let questions = {};
-let initd = false;
+let questions = {empty: true};
+const QS_USED_INDEX_KEY = 'currentUsedIndex';
 
 const init = async _ => {
-    if (initd)
+    if (!questions.empty)
         return questions;
     const resp = await axios.get(Consts.ASSET_PATH + 'resources.json');
-    questions = resp.data['questions'];
-    initd = true;
+    questions = prepareReceivedQs(resp.data['questions']);
     return questions
+};
+
+/**
+ * @param {Object} qs
+ */
+const prepareReceivedQs = qs => {
+    const putIndexProperty = targetArray => {
+        Object.defineProperty(targetArray, QS_USED_INDEX_KEY, {
+            enumerable: false,
+            value: 0,
+            configurable: false,
+            writable: true
+        })
+    };
+    Object.keys(qs).forEach(key => {
+        const flat = qs[key];
+        if (Array.isArray(flat)) {
+            qs[key] = random.shuffle(flat);
+            putIndexProperty(qs[key]);
+        } else if (typeof flat === 'object') {
+            Object.keys(flat).forEach(dkey => {
+                if (['easy', 'normal', 'hard', 'impossible'].includes(dkey.toLowerCase())) {
+                    flat[dkey] = random.shuffle(flat[dkey]);
+                    putIndexProperty(flat[dkey]);
+                }
+            })
+        }
+    });
+    return qs
+};
+
+/**
+ *
+ * @param {*[]} arr
+ * @returns {*}
+ */
+const pickNextUnique = arr => {
+    arr[QS_USED_INDEX_KEY] = (arr[QS_USED_INDEX_KEY] + 1) % arr.length;
+    return arr[arr[QS_USED_INDEX_KEY]]
 };
 
 /**
  * @param {Player} p
  */
 const genMultiCond = p => {
-    const r = random.choice(questions.multiCond);
+    const r = pickNextUnique(questions.multiCond);
     const prefix = r[0] === '@' ? 'Every' : 'Everyone who';
     return new Challenge({task: r.replace('@', ''), type: Challenge.TYPES.MULTI_COND, prefix});
 };
@@ -28,7 +66,7 @@ const genMultiCond = p => {
  * @param {Player} p
  */
 const genGroupRelay = p => {
-    const r = random.choice(questions.groupRelay);
+    const r = pickNextUnique(questions.groupRelay);
     return new Challenge({task: r, type: Challenge.TYPES.GROUP_RELAY});
 };
 
@@ -183,7 +221,6 @@ const genImgQuizGeneric = (p, challengeType) => {
 };
 
 const genDuel = (() => {
-
     const optsAnimals = ['beetle', 'dinosaur', 'sea-serpent', 'snail', 'snake', 'seagull', 'octopus', 'fish', 'dragonfly'];
     optsAnimals.push('butterfly', 'fox', 'rabbit', 'wolf-head', 'sheep', 'raven', 'gecko', 'cat');
     const optsWeapons = ['archer', 'axe', 'battered-axe', 'bombs', 'bowie-knife', 'bullets', 'croc-sword'];
@@ -193,8 +230,7 @@ const genDuel = (() => {
     optsOther.push('fedora', 'hand', 'horn-call', 'metal-gate', 'omega', 'ocean-emblem', 'overmind', 'podium');
     optsOther.push('shoe-prints', 'queen-crown', 'shovel', 'trail', 'tooth', 'anvil', 'triforce', 'snowflake');
     optsOther.push('kaleidoscope', 'gold-bar', 'gloop', 'gem', 'eyeball', 'crystals', 'diamond', 'droplet', 'magnet');
-    optsOther.push('tombstone', 'aquarius', 'aries', 'cancer', 'capricorn', 'gemini', 'libra', 'leo', 'pisces');
-    optsOther.push('sagittarius', 'scorpio', 'taurus', 'virgo', 'palm-tree', 'clover', 'daisy', 'leaft', 'flower');
+    optsOther.push('tombstone', 'aquarius', 'palm-tree', 'clover', 'daisy', 'flower');
     optsOther.push('egg', 'toast', 'honeycomb', 'clovers', 'hearts', 'suits', 'spades', 'diamonds', 'wifi');
 
     const taskWep = 'weapon';

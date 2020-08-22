@@ -70,21 +70,6 @@ function reducer(state, {type, payload = {}}) {
                     players: clones
                 };
             }
-            /*if (payload.pickedItems) {
-                utils.passRoundForPlayer(currPlayerClone);
-                utils.giveItemsToPlayer(currPlayerClone, payload.pickedItems);
-                if (state.phase === Phase.QUEST_PENDING_SHOWING)
-                    return {
-                        phase: Phase.QUEST_FULFILLED,
-                        players: utils.mergePlayers(players, currPlayerClone)
-                    };
-            } else {
-                if (state.phase === Phase.QUEST_PENDING_SHOWING)
-                    return {
-                        phase: Phase.QUEST_FULFILLED,
-                        players: utils.mergePlayers(players, currPlayerClone)
-                    };
-            }*/
             return null;
         case ACTIONS.OFFER_NEXT_TURN:
             if (state.phase === Phase.QUEST_FULFILLED || state.phase === Phase.SHOWING_DICE_RESULT) {

@@ -10,19 +10,24 @@ const cx = {
     container: 'loading-screen'
 };
 
+const needToLoad = ['intropic.jpg', 'bg.jpg', 'rainbow-strip.png'];
+
 const getLoadablePic = src => new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => {
         console.log('loaded ' + src);
         resolve(1)
     };
-    img.onerror = () => {console.warn(src+' not found');resolve(1)};
+    img.onerror = () => {
+        console.warn(src + ' not found');
+        resolve(1)
+    };
     img.src = src;
 });
 
 const loadIntro = () => {
     const basePath = Consts.ASSET_PATH + 'img/';
-    let toLoad = ['intropic.jpg', 'bg.jpg', 'rainbow-strip.png'];
+    let toLoad = needToLoad;
     toLoad = toLoad
         .map(i => basePath + i)
         .map(i => getLoadablePic(i));

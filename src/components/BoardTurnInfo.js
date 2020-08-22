@@ -7,12 +7,11 @@ const cx = {
 };
 
 const BoardTurnInfo = ({turnPlayer, onImgClick}) => {
-    const {avatar, name, items} = turnPlayer;
+    const {avatar, name} = turnPlayer;
     return (
         <div className={cx.container}>
             <img alt="Player's avatar" src={avatar} onClick={onImgClick}/>
             <h1>{name}'s turn</h1>
-            {items.map(i => <p key={i.id}>{i.name} {i.charges}</p>)}
         </div>
     )
 };

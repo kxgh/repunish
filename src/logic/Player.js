@@ -10,7 +10,6 @@ class Player {
         this.avatar = avatars.getAll()[(this.id - 1) % avatars.size()];
         this.position = 0;
         this.luck = 0;
-        this.items = [];
         this.finished = false;
         this.punishment = null;
     }

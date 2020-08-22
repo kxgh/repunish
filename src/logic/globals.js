@@ -1,5 +1,4 @@
 import Player from "./Player";
-import Item from "./Item";
 import Punishment from "./Punishment";
 import * as Consts from "./consts";
 import Challenge from "./Challenge";
@@ -165,30 +164,15 @@ export const punishments = (() => {
 export const utils = (() => {
 
     const utils = {
-        cloneItem: item => Object.assign(new Item(), item),
-        cloneItems: items => {
-            return items.map(item => utils.cloneItem(item))
-        },
         clonePlayer: (p) => {
             const np = Object.assign(new Player({id: p.id}), p);
-            np.items = utils.cloneItems(np.items);
             return np
         },
         mergePlayers: (allPlayers, modifiedPlayer) => {
             return allPlayers.map(p => p.id !== modifiedPlayer.id ? p : modifiedPlayer);
         },
-        passRoundForPlayer: player => {
-            player.items.forEach(item => {
-                item.charges--
-            });
-            player.items = player.items.filter(item => item.charges > 0)
-        },
-        giveItemsToPlayer: (player, items) => {
-            player.items = player.items.concat(items);
-        },
         getPlayersLuck: (player) => {
             let luck = player.luck || 0;
-            player.items.forEach(item => luck += Item.MODIFS.luckFor(item));
             return luck;
         },
         filterImmunePlayers(players) {
@@ -306,6 +290,6 @@ export const DURATIONS = (() => {
         DICE_ROLL: base * 2,
         DICE_SETTLE: base,
         STEP_CHOOSE: base,
-        FULFILLED: base * 1.5
+        FULFILLED: 700
     };
 })();
